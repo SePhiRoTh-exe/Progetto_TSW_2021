@@ -14,12 +14,13 @@
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.ProdottoBean,model.Carrello"%>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-		<link href="ProductStyle.css" rel="stylesheet" type="text/css">
+		<link href="style.css" rel="stylesheet" type="text/css">
 		<title>Ecommerce</title>
 	</head>
 	<body>
+		<%@ include file="../section/navbar.jsp" %><br>
 		<h2>Catalogo</h2>
-		<table border="1">
+		<table>
 			<tr>
 				<th>Nome</th>
 				<th>Descrizione</th>
