@@ -22,7 +22,7 @@ public class Carrello {
 		for(ProdottoBean pr:prodotti) {
 			if(pr.getCodice()==prodotto.getCodice())
 			{
-				prodotti.remove(prodotto);
+				prodotti.remove(pr);
 				break;
 			}
 		}

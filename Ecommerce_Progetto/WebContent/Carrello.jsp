@@ -23,7 +23,7 @@
 				<th></th>
 			</tr>
 			<%List<ProdottoBean> prodottiCarrello=carrello.getProdotti();
-			  for(ProdottoBean bean: prodottiCarrello){
+			  	for(ProdottoBean bean: prodottiCarrello){
 			%>
 			<tr>
 				<td><%=bean.getNome()%></td>
@@ -33,6 +33,6 @@
 			</tr>
 			<%} %>
 		</table>
-		<%} %>
+<% } %>
 </body>
 </html>
