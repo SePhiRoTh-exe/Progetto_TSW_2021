@@ -18,8 +18,8 @@
 		<table>
 			<tr>
 				<th>Oggetto</th>
-				<th></th>
-				<th></th>
+				<th>Quantita</th>
+				<th>Prezzo</th>
 				<th></th>
 			</tr>
 			<%List<ProdottoBean> prodottiCarrello=carrello.getProdotti();
