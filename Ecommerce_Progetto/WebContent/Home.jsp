@@ -19,7 +19,7 @@
 	</head>
 	<body>
 		<%@ include file="../section/navbar.jsp" %><br>
-		<h2>Catalogo</h2>
+		<h1>Catalogo</h1>
 		<table>
 			<tr>
 				<th>Nome</th>

@@ -26,6 +26,21 @@ body {
 }
 table{
 	border-collapse: collapse;
-	text-align: center;
 	border: 1px solid black;
+	width: 100%;
+}
+th,td{
+	text-align: left;
+}
+th{
+	background-color:black;
+	color: white;
+}
+a{
+	float: left;
+	color:grey;
+	text-decoration:none;
+}
+a:hover{
+	color: black;
 }

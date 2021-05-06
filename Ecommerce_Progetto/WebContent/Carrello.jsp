@@ -18,6 +18,9 @@
 		<table>
 			<tr>
 				<th>Oggetto</th>
+				<th></th>
+				<th></th>
+				<th></th>
 			</tr>
 			<%List<ProdottoBean> prodottiCarrello=carrello.getProdotti();
 			  for(ProdottoBean bean: prodottiCarrello){
@@ -25,6 +28,7 @@
 			<tr>
 				<td><%=bean.getNome()%></td>
 				<td><%=bean.getQuantita()%></td>
+				<td>$<%=bean.getPrezzo() %></td>
 				<td><a href="product?action=deleteC&id=<%=bean.getCodice()%>">Rimuovi dal carrello</a></td>
 			</tr>
 			<%} %>
