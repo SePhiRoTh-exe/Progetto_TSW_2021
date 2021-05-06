@@ -36,7 +36,7 @@
 			%>
 			<tr>
 				<td><%=bean.getNome() %></td>
-				<td><%=bean.getDescrizione() %></td>
+				<td><a href="product?action=view&id=<%=bean.getCodice()%>">Vedi Descrizione</a></td>
 				<td><a href="product?action=addC&id=<%=bean.getCodice()%>">Aggiungi al carrello</a></td>
 			</tr>
 			<%

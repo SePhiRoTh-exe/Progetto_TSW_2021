@@ -38,6 +38,12 @@ public class ProdottoControl extends HttpServlet{
 					int id=Integer.parseInt(request.getParameter("id"));
 					carrello.deleteProdotto(model.doRetrieveByKey(id));
 				}
+				else if(action.equalsIgnoreCase("view")) {
+					int id=Integer.parseInt(request.getParameter("id"));
+					//rimuovo il precedente prodotto di cui ho letto la descrizione e metto quello nuovo
+					request.removeAttribute("product");
+					request.setAttribute("product", model.doRetrieveByKey(id));
+				}
 			}
 		}catch(SQLException e) {
 			System.out.println("Errore "+e.getMessage());
@@ -53,8 +59,19 @@ public class ProdottoControl extends HttpServlet{
 		} catch (SQLException e) {
 			System.out.println("Error:" + e.getMessage());
 		}
+		if(action!=null && action.equalsIgnoreCase("deleteC"))
+		{
+			RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/Carrello.jsp");
+			dispatcher.forward(request, response);
+		}
+		else if(action!=null && action.equalsIgnoreCase("view")) {
+			RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/Descrizione.jsp");
+			dispatcher.forward(request, response);
+		}
+		else {
 		RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/Home.jsp");
 		dispatcher.forward(request, response);
+		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		doGet(request,response);
