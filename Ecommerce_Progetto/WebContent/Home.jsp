@@ -43,5 +43,22 @@
 				}
 			%>
 		</table>
+		<% if(carrello!=null) { %>
+		<h1>Carrello</h1>
+		<table>
+			<tr>
+				<th>Oggetto</th>
+			</tr>
+			<%List<ProdottoBean> prodottiCarrello=carrello.getProdotti();
+			  for(ProdottoBean bean: prodottiCarrello){
+			%>
+			<tr>
+				<td><%=bean.getNome()%></td>
+				<td><%=bean.getQuantita()%></td>
+				<td><a href="product?action=deleteC&id=<%=bean.getCodice()%>">Rimuovi dal carrello</a></td>
+			</tr>
+			<%} %>
+		</table>
+		<%} %>
 	</body>
 </html>

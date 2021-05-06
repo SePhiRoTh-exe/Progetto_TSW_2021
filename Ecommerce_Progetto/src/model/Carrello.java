@@ -8,6 +8,13 @@ public class Carrello {
 		prodotti=new ArrayList<ProdottoBean>();
 	}
 	public void addProdotto(ProdottoBean prodotto) {
+		for(ProdottoBean pr: prodotti) {
+			if(pr.getCodice()==prodotto.getCodice())
+			{
+				pr.setQuantita(pr.getQuantita()+1);
+				return;
+			}
+		}
 		prodotti.add(prodotto);
 	}
 	public void deleteProdotto(ProdottoBean prodotto) {
