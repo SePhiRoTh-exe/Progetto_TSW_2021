@@ -12,6 +12,7 @@
 <body>
 	<%@ include file="../section/navbar.jsp" %><br>
 	<h1>Descrizione</h1>
+	<a href="<%=request.getContextPath() %>/Home.jsp">Indietro</a>
 	<table>
 		<tr>
 			<th>Descrizione Gioco: <%=prodotto.getNome() %></th>

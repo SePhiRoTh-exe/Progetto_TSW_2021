@@ -23,6 +23,7 @@
 		<table>
 			<tr>
 				<th>Nome</th>
+				<th>Prezzo</th>
 				<th>Descrizione</th>
 				<th>Carrello</th>
 			</tr>
@@ -36,6 +37,7 @@
 			%>
 			<tr>
 				<td><%=bean.getNome() %></td>
+				<td>$<%=bean.getPrezzo() %></td>
 				<td><a href="product?action=view&id=<%=bean.getCodice()%>">Vedi Descrizione</a></td>
 				<td><a href="product?action=addC&id=<%=bean.getCodice()%>">Aggiungi al carrello</a></td>
 			</tr>
