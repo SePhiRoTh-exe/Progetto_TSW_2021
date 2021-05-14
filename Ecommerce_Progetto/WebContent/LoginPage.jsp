@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<%@ include file="../section/navbar.jsp" %>
-		<form action="Login">
+		<form action="Login" method="post">
 			Username
 			<input type="text" name="Username" placeholder="Username"><br>
 			Password
