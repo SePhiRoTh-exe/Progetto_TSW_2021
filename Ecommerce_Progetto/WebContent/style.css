@@ -1,10 +1,12 @@
 body {
- background-color: rgb(255, 255, 255);
- font-family: Verdana, Helvetica, sans-serif;
+	background-image: url(sfondo.jpg);
+	background-size: cover;
+ 	background-color: rgb(255, 255, 255);
+ 	font-family: Verdana, Helvetica, sans-serif;
 }
 @media only screen and (max-width: 900px) {
   body {
-    background-color: white;
+    background-color: blue;
   }
 }
 .navbar{
