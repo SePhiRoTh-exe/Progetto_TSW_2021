@@ -20,12 +20,12 @@ public class UserModelDS {
 			System.out.println("Errore:" + e.getMessage());
 		}
 	}
-	public synchronized UserBean doRetrieve(UserBean bean) throws SQLException{
+	public static synchronized UserBean doRetrieve(UserBean bean) throws SQLException{
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
 		String username=bean.getUsername();
 		String password=bean.getPassword();
-		String selectSQL="SELECT * FROM "+TABLE_NAME+"WHERE USERNAME='"+username+"' AND PASSWORD='"+password+"'";
+		String selectSQL="SELECT * FROM "+TABLE_NAME+" WHERE USERNAME='"+username+"' AND PASSWORD='"+password+"'";
 		try {
 			connection=ds.getConnection();
 			preparedStatement=connection.prepareStatement(selectSQL);

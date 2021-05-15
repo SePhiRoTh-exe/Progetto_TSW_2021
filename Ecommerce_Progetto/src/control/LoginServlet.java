@@ -23,11 +23,12 @@ public class LoginServlet extends HttpServlet{
 			UserBean user=new UserBean();
 			user.setUsername(request.getParameter("Username"));
 			user.setPassword(request.getParameter("Password"));
-			user=userDS.doRetrieve(user);
+			user=UserModelDS.doRetrieve(user);
 			if(user.isValid())
 			{
 				HttpSession session=request.getSession(true);
-				session.setAttribute("currentSession", user);
+				session.setAttribute("user", user);
+				session.setMaxInactiveInterval(60);
 				response.sendRedirect("Home.jsp");
 			}
 			else
@@ -43,5 +44,4 @@ public class LoginServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
 		doGet(request,response);
 	}
-	private static UserModelDS userDS;
 }
