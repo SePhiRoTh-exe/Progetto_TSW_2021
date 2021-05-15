@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import datasource.ProdottoModel;
+import datasource.ProdottoModelDS;
 import model.Carrello;
-import model.ProdottoModel;
-import model.ProdottoModelDS;
 
 public class ProdottoControl extends HttpServlet{
 	private static final long serialVersionUID = 1L;

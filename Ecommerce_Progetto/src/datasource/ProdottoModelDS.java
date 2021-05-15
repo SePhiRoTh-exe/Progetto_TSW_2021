@@ -1,4 +1,4 @@
-package model;
+package datasource;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +11,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import model.ProdottoBean;
 
 public class ProdottoModelDS implements ProdottoModel{
 	static {
