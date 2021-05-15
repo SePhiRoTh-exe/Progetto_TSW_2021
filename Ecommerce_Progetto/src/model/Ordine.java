@@ -8,7 +8,7 @@ public class Ordine {
 	
 	private long numeroOrdine;
 	private float totale;
-	private String stato;
+	private String stto;
 	private UserBean utente;
 	private ArrayList<ProdottoBean> prodotti;
 
