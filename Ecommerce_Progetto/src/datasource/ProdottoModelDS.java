@@ -13,7 +13,6 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import model.ProdottoBean;
-import model.ProdottoModel;
 
 public class ProdottoModelDS implements ProdottoModel{
 	static {
