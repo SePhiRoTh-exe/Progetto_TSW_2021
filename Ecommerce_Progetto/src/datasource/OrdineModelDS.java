@@ -5,14 +5,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import model.Carrello;
 import model.Ordine;
+import model.ProdottoCarrello;
 import model.UserBean;
 
 public class OrdineModelDS {
@@ -52,22 +58,31 @@ public class OrdineModelDS {
 		return ordine;
 	}
 	
-	public static synchronized void doSave(Ordine ordine) throws SQLException{
+	public static synchronized boolean doSave(Carrello cart, UserBean user) throws SQLException{
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
-		
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String data = date.format(formatter);
 		//formatto la data da inserire nei dati dell ordine
-		Date now = new Date();
-		String pattern = "yyyy-MM-dd";
-		SimpleDateFormat formato = new SimpleDateFormat(pattern);
-		String data = formato.format(now);
 		
-		//Salvo gli ordini nel DB
-		String insertSQL="INSERT INTO "+TABLE_NAME+" (IDORDINE, STATO, TOTALE, EMAIL, DATA) VALUES ("+ordine.getNumeroOrdine()+", "+ordine.getTotale()+", "+ordine.getUtente().getEmail()+", "+data+")";
+		int id;
+		
+		//da modificare aggiungendo il check che valuta se ci sono ordini con lo stesso id nel database
+		{
+			id= (int) ((int) 1000*Math.random())+10000;
+		}
+		String stato= "In preparazione";
+		
+		
+		//Salvo l'ordine nel DB
+		String insertSQL="INSERT INTO "+TABLE_NAME+" (IDORDINE, STATO, TOTALE, EMAIL) VALUES ("+id+","+stato+" "+cart.getTotale()+", "+user.getEmail()+", "+data+")";
 		try {
 			connection=ds.getConnection();
 			preparedStatement=connection.prepareStatement(insertSQL);
 			preparedStatement.executeQuery();
+			
+			
 		}
 		finally {
 			try {
@@ -80,7 +95,11 @@ public class OrdineModelDS {
 		}
 		
 		//Salvo i prodotti ordinati nel DB
-		ProdottoOrdineDS.doSave(ordine);
+		
+		if(ProdottoOrdineDS.doSave(cart.getProdotti(), id)) {
+		return true;
+		}
+		return false;
 	}
 	private final static String TABLE_NAME="order";
 	private static DataSource ds;

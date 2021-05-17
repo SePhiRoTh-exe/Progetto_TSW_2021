@@ -5,30 +5,38 @@ import java.util.List;
 
 public class Carrello {
 	public Carrello() {
-		prodotti=new ArrayList<ProdottoBean>();
+		prodotti=new ArrayList<ProdottoCarrello>();
 	}
 	public void addProdotto(ProdottoBean prodotto) {
-		for(ProdottoBean pr: prodotti) {
-			if(pr.getCodice()==prodotto.getCodice())
+		for(ProdottoCarrello pr: prodotti) {
+			if(pr.getProduct().getCodice()==prodotto.getCodice())
 			{
-				pr.setQuantitaCarrello(pr.getQuantitaCarrello()+1);
+				pr.setQuantità(pr.getQuantità()+1);
 				return;
 			}
 		}
-		prodotti.add(prodotto);
+		ProdottoCarrello product = new ProdottoCarrello(prodotto,1);
+		prodotti.add(product);
 	}
 	public void deleteProdotto(ProdottoBean prodotto) {
 		//elimino il prodotto nel carrello tramite codice identificativo
-		for(ProdottoBean pr:prodotti) {
-			if(pr.getCodice()==prodotto.getCodice())
+		for(ProdottoCarrello pr:prodotti) {
+			if(pr.getProduct().getCodice()==prodotto.getCodice())
 			{
 				prodotti.remove(pr);
 				break;
 			}
 		}
 	}
-	public List<ProdottoBean> getProdotti(){
+	public float getTotale() {
+		float totale=0;
+		for (ProdottoCarrello pr: prodotti) {
+			totale+=pr.getProduct().getPrezzo()*pr.getQuantità();
+		}
+		return totale;
+	}
+	public List<ProdottoCarrello> getProdotti(){
 		return prodotti;
 	}
-	private List<ProdottoBean> prodotti;
+	private List<ProdottoCarrello> prodotti;
 }

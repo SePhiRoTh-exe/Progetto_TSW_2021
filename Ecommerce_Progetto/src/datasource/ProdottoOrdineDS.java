@@ -1,9 +1,11 @@
 package datasource;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -11,6 +13,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import model.Ordine;
+import model.ProdottoCarrello;
 import model.ProdottoOrdineBean;
 
 public class ProdottoOrdineDS {
@@ -24,14 +27,13 @@ public class ProdottoOrdineDS {
 		}
 	}
 	
-	public static synchronized void doSave(Ordine ordine) throws SQLException {
+	public static synchronized boolean doSave(List<ProdottoCarrello> list, int id) throws SQLException {
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
-		ArrayList<ProdottoOrdineBean> lista=new ProdottoOrdineBean().prodotti(ordine);
 		try {
 			connection=ds.getConnection();
-			for(ProdottoOrdineBean bean:lista) {
-				String insertSQL="INSERT INTO "+TABLE_NAME+"(PREZZO, IVA, QUANTITA, CODE, IDORDINE) VALUES ("+bean.getPrezzo()+", "+bean.getIva()+", "+bean.getQuantita()+", "+bean.getCodice()+", "+bean.getID()+")";
+			for(ProdottoCarrello bean:list) {
+				String insertSQL="INSERT INTO "+TABLE_NAME+"(PREZZO, IVA, QUANTITA, CODE, IDORDINE) VALUES ("+bean.getQuantità()*bean.getProduct().getPrezzo()+", "+20+", "+bean.getQuantità()+", "+bean.getProduct().getCodice()+", "+id+")";
 				preparedStatement=connection.prepareStatement(insertSQL);
 				preparedStatement.executeQuery();
 			}
@@ -44,7 +46,9 @@ public class ProdottoOrdineDS {
 				if(connection!=null)
 					connection.close();
 			}
+			
 		}
+		return true;
 	}
 	private final static String TABLE_NAME="product_order";
 	private static DataSource ds;
