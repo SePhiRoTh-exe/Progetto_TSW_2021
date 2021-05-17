@@ -22,7 +22,6 @@ public class Ordine {
 		this.prodotti = prodotti;
 	}
 
-
 	public long getNumeroOrdine() {
 		return numeroOrdine;
 	}

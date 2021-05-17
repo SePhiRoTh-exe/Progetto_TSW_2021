@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -77,6 +78,42 @@ public class ProdottoModelDS implements ProdottoModel{
 				bean.setDescrizione(rs.getString("DESCRIPTION"));
 				bean.setPrezzo(rs.getInt("PRICE"));
 				bean.setQuantita(rs.getInt("QUANTITY"));
+				prodotti.add(bean);
+			}
+		}finally {//chiudo statement e connessione se aperte
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			}finally {
+				if(connection!=null)
+					connection.close();
+			}
+		}
+		return prodotti;
+	}
+	
+	//Metodo per restiturire i prodotti acquistati da un utente 
+	public synchronized static ArrayList<ProdottoBean> doRetrieveByEmail(String email) throws SQLException{
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		ArrayList<ProdottoBean> prodotti=new ArrayList<ProdottoBean>();
+		String selectSQL="select * from storage.order, product, product_order where order.Email = '"+email+"'\r\n"
+				+ "and product_order.idOrdine= order.idOrdine\r\n"
+				+ "and product.Code= product_order.Code";
+		try {
+			//Mi connetto al database e passo la select
+			connection=ds.getConnection();
+			preparedStatement=connection.prepareStatement(selectSQL);
+			//Nel result saranno contenuti tutti gli ordini effettuati dall utente
+			ResultSet rs=preparedStatement.executeQuery();
+			//Scorro tutto result e creo un bean per ogni prodotto e lo aggiungo ai prodotti
+			while(rs.next()) {
+				ProdottoBean bean=new ProdottoBean();
+				bean.setCodice(rs.getInt("CODE"));
+				bean.setNome(rs.getString("NAME"));
+				bean.setDescrizione(rs.getString("DESCRIPTION"));
+				bean.setPrezzo(rs.getInt("PREZZO"));
+				bean.setQuantita(rs.getInt("QUANTITA"));
 				prodotti.add(bean);
 			}
 		}finally {//chiudo statement e connessione se aperte

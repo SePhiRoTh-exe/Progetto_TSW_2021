@@ -31,6 +31,12 @@ public class UserBean {
 	public void setValid(boolean valid) {
 		this.valid=valid;
 	}
-	private String nome,cognome,username,password;
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email=email;
+	}
+	private String nome,cognome,username,password,email;
 	public boolean valid;
 }

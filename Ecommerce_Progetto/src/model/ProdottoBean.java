@@ -9,6 +9,7 @@ public class ProdottoBean implements Serializable{
 		nome="";
 		descrizione="";
 		quantita=0;
+		quantitaCarrello=1;
 	}
 	public int getCodice() {
 		return codice;
@@ -27,6 +28,12 @@ public class ProdottoBean implements Serializable{
 	}
 	public void setQuantita(int quantita) {
 		this.quantita=quantita;
+	}
+	public int getQuantitaCarrello() {
+		return quantitaCarrello;
+	}
+	public void setQuantitaCarrello(int quantitaCarrello) {
+		this.quantitaCarrello=quantitaCarrello;
 	}
 	public String getNome() {
 		return nome;
@@ -49,4 +56,5 @@ public class ProdottoBean implements Serializable{
 	String descrizione;
 	int prezzo;
 	int quantita;
+	int quantitaCarrello;
 }

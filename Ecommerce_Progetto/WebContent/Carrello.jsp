@@ -27,7 +27,7 @@
 			%>
 			<tr>
 				<td><%=bean.getNome()%></td>
-				<td><%=bean.getQuantita()%></td>
+				<td><%=bean.getQuantitaCarrello() %></td>
 				<td>$<%=bean.getPrezzo() %></td>
 				<td><a href="product?action=deleteC&id=<%=bean.getCodice()%>">Rimuovi dal carrello</a></td>
 			</tr>

@@ -11,7 +11,7 @@ public class Carrello {
 		for(ProdottoBean pr: prodotti) {
 			if(pr.getCodice()==prodotto.getCodice())
 			{
-				pr.setQuantita(pr.getQuantita()+1);
+				pr.setQuantitaCarrello(pr.getQuantitaCarrello()+1);
 				return;
 			}
 		}
