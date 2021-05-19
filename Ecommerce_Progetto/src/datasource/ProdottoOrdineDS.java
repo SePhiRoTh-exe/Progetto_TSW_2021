@@ -35,7 +35,7 @@ public class ProdottoOrdineDS {
 			for(ProdottoCarrello bean:list) {
 				String insertSQL="INSERT INTO "+TABLE_NAME+"(PREZZO, IVA, QUANTITA, CODE, IDORDINE) VALUES ("+bean.getQuantità()*bean.getProduct().getPrezzo()+", "+20+", "+bean.getQuantità()+", "+bean.getProduct().getCodice()+", "+id+")";
 				preparedStatement=connection.prepareStatement(insertSQL);
-				preparedStatement.executeQuery();
+				preparedStatement.executeUpdate();
 			}
 		}
 		finally {

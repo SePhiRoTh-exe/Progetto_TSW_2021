@@ -45,7 +45,6 @@ public class ProdottoOrdineBean {
 			bean.setID(ordine.getNumeroOrdine());
 			bean.setIva(22);
 			bean.setPrezzo(prodotto.getPrezzo());
-			bean.setQuantita(prodotto.quantitaCarrello);
 			prodottiOrdine.add(bean);
 		}
 		return prodottiOrdine;

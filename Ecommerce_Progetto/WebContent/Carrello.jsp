@@ -5,7 +5,7 @@
 %>
 <!DOCTYPE html>
 <html>
-<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.ProdottoBean,model.Carrello"%>
+<%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.ProdottoBean,model.Carrello,model.*"%>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 		<link href="style.css" rel="stylesheet" type="text/css">
@@ -22,18 +22,18 @@
 				<th>Prezzo</th>
 				<th></th>
 			</tr>
-			<%List<ProdottoBean> prodottiCarrello=carrello.getProdotti();
-			  	for(ProdottoBean bean: prodottiCarrello){
+			<%List<ProdottoCarrello> prodottiCarrello=carrello.getProdotti();
+			  	for(ProdottoCarrello bean: prodottiCarrello){
 			%>
 			<tr>
-				<td><%=bean.getNome()%></td>
-				<td><%=bean.getQuantitaCarrello() %></td>
-				<td>$<%=bean.getPrezzo() %></td>
-				<td><a href="product?action=deleteC&id=<%=bean.getCodice()%>">Rimuovi dal carrello</a></td>
+				<td><%=bean.getProduct().getNome()%></td>
+				<td><%=bean.getQuantità() %></td>
+				<td>$<%=bean.getProduct().getPrezzo() %></td>
+				<td><a href="product?action=deleteC&id=<%=bean.getProduct().getCodice()%>">Rimuovi dal carrello</a></td>
 			</tr>
 			<%} %>
 		</table>
-		<a href="#">Procedi all ordine</h2>
+		<a href="placeOrder">Procedi all ordine</a>
 <% } %>
 </body>
 </html>

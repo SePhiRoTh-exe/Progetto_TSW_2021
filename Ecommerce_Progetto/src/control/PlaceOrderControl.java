@@ -4,8 +4,6 @@ import java.io.IOException;
 
 import java.sql.SQLException;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,16 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import datasource.OrdineModelDS;
-import datasource.ProdottoModelDS;
 import model.UserBean;
-import datasource.UserModelDS;
 import model.Carrello;
-import model.Ordine;
 
 public class PlaceOrderControl extends HttpServlet {
-	
-	private static OrdineModelDS orderManager = new OrdineModelDS();
-	private static UserModelDS userManager= new UserModelDS();
+	private static final long serialVersionUID = 1L;
 	private UserBean utente;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -30,19 +23,21 @@ public class PlaceOrderControl extends HttpServlet {
 		HttpSession session = request.getSession();
 		try {
 			if(session.getAttribute("user")!=null) {
-				String email= (String) session.getAttribute("email");
-				utente = UserModelDS.doRetrieve(email);
-				
+				/*String email= (String) session.getAttribute("email");
+				utente = UserModelDS.doRetrieve(email);*/
+				System.out.println("TEST 1");
+				utente=(UserBean) session.getAttribute("user");
 				if(session.getAttribute("cart")!=null) {
+					System.out.println("TEST 2");
 					Carrello cart = (Carrello) session.getAttribute("cart");
 					if(cart.getProdotti().size()==0) {
 						session.setAttribute("alertMsg", "Errore, carrello vuoto");
 						response.sendRedirect("./Home.jsp");
 					}
 					else {	
-					
+						System.out.println("TEST 3");
 						if(OrdineModelDS.doSave(cart, utente)) {
-						
+							System.out.println("TEST 4");
 							session.setAttribute("cart", null);
 							session.setAttribute("alertMsg", "Ordine effettuato con successo");
 							response.sendRedirect("./Home.jsp");
@@ -68,6 +63,8 @@ public class PlaceOrderControl extends HttpServlet {
 			
 		}
 	}
-		
-
+	
+	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
+		doGet(request,response);
+	}
 }

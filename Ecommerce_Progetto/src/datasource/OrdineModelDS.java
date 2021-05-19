@@ -1,15 +1,11 @@
 package datasource;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Random;
+
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -18,7 +14,6 @@ import javax.sql.DataSource;
 
 import model.Carrello;
 import model.Ordine;
-import model.ProdottoCarrello;
 import model.UserBean;
 
 public class OrdineModelDS {
@@ -61,9 +56,8 @@ public class OrdineModelDS {
 	public static synchronized boolean doSave(Carrello cart, UserBean user) throws SQLException{
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
-		LocalDate date = LocalDate.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		String data = date.format(formatter);
+		java.util.Date data=new java.util.Date();
+		Date date = new Date(data.getTime());
 		//formatto la data da inserire nei dati dell ordine
 		
 		int id;
@@ -76,11 +70,16 @@ public class OrdineModelDS {
 		
 		
 		//Salvo l'ordine nel DB
-		String insertSQL="INSERT INTO "+TABLE_NAME+" (IDORDINE, STATO, TOTALE, EMAIL) VALUES ("+id+","+stato+" "+cart.getTotale()+", "+user.getEmail()+", "+data+")";
+		String insertSQL="INSERT INTO STORAGE."+TABLE_NAME+" (IDORDINE, STATO, TOTALE, EMAIL, DATA) VALUES (?, ?, ?, ?, ?)";
 		try {
 			connection=ds.getConnection();
 			preparedStatement=connection.prepareStatement(insertSQL);
-			preparedStatement.executeQuery();
+			preparedStatement.setInt(1, id);
+			preparedStatement.setString(2, stato);
+			preparedStatement.setFloat(3, cart.getTotale());
+			preparedStatement.setString(4,user.getEmail());
+			preparedStatement.setDate(5,date);
+			preparedStatement.executeUpdate();
 			
 			
 		}

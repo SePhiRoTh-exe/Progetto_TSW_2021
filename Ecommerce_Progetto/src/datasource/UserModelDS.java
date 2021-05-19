@@ -39,6 +39,7 @@ public class UserModelDS {
 			{
 				bean.setNome(rs.getString("Nome"));
 				bean.setCognome(rs.getString("Cognome"));
+				bean.setEmail(rs.getString("Email"));
 				bean.setValid(true);
 			}
 		}
