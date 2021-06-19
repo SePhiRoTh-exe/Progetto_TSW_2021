@@ -87,6 +87,28 @@ public class UserModelDS {
 		}
 		return bean;
 	}
+	
+	public static synchronized boolean doSave(UserBean bean) throws SQLException{
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		String insertSQL="INSERT INTO STORAGE."+TABLE_NAME+"(EMAIL, NOME, COGNOME, USERNAME, PASSWORD) VALUES ("+bean.getEmail()+", "+bean.getNome()+", "+bean.getCognome()+", "+bean.getUsername()+", "+bean.getPassword()+")";
+		try {
+			connection=ds.getConnection();
+			preparedStatement=connection.prepareCall(insertSQL);
+			preparedStatement.executeUpdate();
+		}
+		finally
+		{
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			}finally {
+				if(connection!=null)
+					connection.close();
+			}
+		}
+		return true;
+	}
 	private final static String TABLE_NAME="users";
 	private static DataSource ds;
 	private static ResultSet rs;

@@ -22,6 +22,10 @@
   	<servlet-name>PlaceOrderControl</servlet-name>
   	<servlet-class>control.PlaceOrderControl</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>UserControl</servlet-name>
+  	<servlet-class>control.UserControl</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>ProdottoControl</servlet-name>
     <url-pattern>/product</url-pattern>
@@ -33,5 +37,9 @@
   <servlet-mapping>
   	<servlet-name>PlaceOrderControl</servlet-name>
   	<url-pattern>/placeOrder</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UserControl</servlet-name>
+  	<url-pattern>/userSettings</url-pattern>
   </servlet-mapping>
 </web-app>

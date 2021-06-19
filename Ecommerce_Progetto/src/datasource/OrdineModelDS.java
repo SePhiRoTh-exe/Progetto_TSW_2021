@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -27,10 +27,10 @@ public class OrdineModelDS {
 		}
 	}
 	
-	public static synchronized Ordine doRetrieve(String email) throws SQLException{
+	public static synchronized ArrayList<Ordine> doRetrieve(String email) throws SQLException{
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
-		Ordine ordine=null;
+		ArrayList<Ordine> listaOrdini=new ArrayList<Ordine>();
 		UserBean user=UserModelDS.doRetrieve(email);
 		String selectSQL="SELECT * FROM "+OrdineModelDS.TABLE_NAME+" WHERE EMAIL ='"+email+"'";
 		try {
@@ -38,7 +38,7 @@ public class OrdineModelDS {
 			preparedStatement=connection.prepareStatement(selectSQL);
 			ResultSet rs=preparedStatement.executeQuery();
 			while(rs.next()) {
-				ordine=new Ordine(rs.getLong("IDORDINE"),rs.getFloat("TOTALE"),rs.getString("STATO"),user,ProdottoModelDS.doRetrieveByEmail(email));
+				listaOrdini.add(new Ordine(rs.getLong("IDORDINE"),rs.getFloat("TOTALE"),rs.getString("STATO"),user,ProdottoModelDS.doRetrieveByEmail(email)));
 			}
 		}
 		finally {
@@ -50,7 +50,7 @@ public class OrdineModelDS {
 					connection.close();
 			}
 		}
-		return ordine;
+		return listaOrdini;
 	}
 	
 	public static synchronized boolean doSave(Carrello cart, UserBean user) throws SQLException{
