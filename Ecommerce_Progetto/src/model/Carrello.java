@@ -1,22 +1,66 @@
 package model;
 
+import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import datasource.ProdottoModelDS;
 
 public class Carrello {
 	public Carrello() {
 		prodotti=new ArrayList<ProdottoCarrello>();
+		totale=0;
+	}
+	public float returnTotale() {
+		return totale;
 	}
 	public void addProdotto(ProdottoBean prodotto) {
 		for(ProdottoCarrello pr: prodotti) {
-			if(pr.getProduct().getCodice()==prodotto.getCodice())
+			if(pr.getProduct().getCodice()==prodotto.getCodice() && pr.getProduct().getQuantita()+1 < prodotto.getQuantita())
 			{
 				pr.setQuantità(pr.getQuantità()+1);
+				this.getTotale();
 				return;
 			}
 		}
 		ProdottoCarrello product = new ProdottoCarrello(prodotto,1);
 		prodotti.add(product);
+		this.getTotale();
+	}
+	public boolean modQuantità(int idProd, int quantita) {
+		
+		try {
+			if (!checkQuantity(idProd, quantita)) return false;
+			
+			ProdottoModelDS productds=new ProdottoModelDS();
+			ProdottoBean p=productds.doRetrieveByKey(idProd);
+			
+			int pos=this.isInCart(p);
+			prodotti.get(pos).setQuantità(prodotti.get(pos).getQuantità() + quantita);
+			if(prodotti.get(pos).getQuantità()==0) {
+				this.deleteProdotto(p);
+			}
+			this.getTotale();
+			return true;
+			
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;	
+	}
+	
+	public boolean checkQuantity(int idProd, int quantita) throws SQLException {
+		ProdottoModelDS productds=new ProdottoModelDS();
+		ProdottoBean p=productds.doRetrieveByKey(idProd);
+		
+		int pos=this.isInCart(p);
+		int quantitadesiderata=quantita;
+		if(pos>0) quantitadesiderata+=prodotti.get(pos).getQuantità();
+		
+		if(quantitadesiderata>p.getQuantita()) return false;
+		return true;
 	}
 	public void deleteProdotto(ProdottoBean prodotto) {
 		//elimino il prodotto nel carrello tramite codice identificativo
@@ -24,19 +68,36 @@ public class Carrello {
 			if(pr.getProduct().getCodice()==prodotto.getCodice())
 			{
 				prodotti.remove(pr);
+				this.getTotale();
 				break;
 			}
 		}
 	}
-	public float getTotale() {
-		float totale=0;
-		for (ProdottoCarrello pr: prodotti) {
-			totale+=pr.getProduct().getPrezzo()*pr.getQuantità();
+	
+	public int isInCart(ProdottoBean p) {
+		if(prodotti.size()<1) return -1;
+		for(int i=0;i<prodotti.size();i++) {
+			if(prodotti.get(i).getProduct().getCodice()==p.getCodice())
+				return i;
 		}
-		return totale;
+		return -1;
 	}
-	public List<ProdottoCarrello> getProdotti(){
-		return prodotti;
+	public boolean isEmpty() {
+		if(prodotti.size()==0) {
+			return true;
+		}
+		return false;
+	}
+	public void getTotale() {
+		float prezzo=0;
+		for (ProdottoCarrello pr: prodotti) {
+			prezzo+=pr.getProduct().getPrezzo()*pr.getQuantità();
+		}
+		totale=prezzo;
+	}
+	public ArrayList<ProdottoCarrello> getProdotti(){
+		return (ArrayList<ProdottoCarrello>) prodotti;
 	}
 	private List<ProdottoCarrello> prodotti;
+	private float totale;
 }

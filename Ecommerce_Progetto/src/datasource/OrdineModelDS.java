@@ -76,7 +76,7 @@ public class OrdineModelDS {
 			preparedStatement=connection.prepareStatement(insertSQL);
 			preparedStatement.setInt(1, id);
 			preparedStatement.setString(2, stato);
-			preparedStatement.setFloat(3, cart.getTotale());
+			preparedStatement.setFloat(3, cart.returnTotale());
 			preparedStatement.setString(4,user.getEmail());
 			preparedStatement.setDate(5,date);
 			preparedStatement.executeUpdate();
