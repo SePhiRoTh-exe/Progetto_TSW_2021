@@ -54,6 +54,37 @@ public class ProdottoModelDS implements ProdottoModel{
 		}
 		return bean;
 	}
+	public synchronized Collection<ProdottoBean> doRetrieveByCat(String cat) throws SQLException {
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		Collection<ProdottoBean> prodotti=new ArrayList<ProdottoBean>();
+		ProdottoBean bean=new ProdottoBean();
+		String selectSQL="SELECT * FROM "+ProdottoModelDS.TABLE_NAME+" WHERE CATEGORY = ?";
+		try {
+			connection=ds.getConnection();
+			preparedStatement=connection.prepareStatement(selectSQL);
+			//da modificare!!!
+			preparedStatement.setString(1, cat);
+			ResultSet rs=preparedStatement.executeQuery();
+			while(rs.next()) {
+				bean.setCodice(rs.getInt("CODE"));
+				bean.setNome(rs.getString("NAME"));
+				bean.setDescrizione(rs.getString("DESCRIPTION"));
+				bean.setPrezzo(rs.getInt("PRICE"));
+				bean.setQuantita(rs.getInt("QUANTITY"));
+				prodotti.add(bean);
+			}
+		}finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			}finally {
+				if(connection!=null)
+					connection.close();
+			}
+		}
+		return prodotti;
+	}
 
 	@Override
 	public synchronized Collection<ProdottoBean> doRetrieveAll(String ordine) throws SQLException {
@@ -91,6 +122,72 @@ public class ProdottoModelDS implements ProdottoModel{
 		}
 		return prodotti;
 	}
+	
+	public synchronized Collection<ProdottoBean> doRetrieveByName(String nome) throws SQLException {
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		Collection<ProdottoBean> prodotti=new ArrayList<ProdottoBean>();
+		ProdottoBean bean=new ProdottoBean();
+		String selectSQL="SELECT * FROM "+ProdottoModelDS.TABLE_NAME+" WHERE NAME = ?";
+		try {
+			connection=ds.getConnection();
+			preparedStatement=connection.prepareStatement(selectSQL);
+			preparedStatement.setString(2, nome);
+			ResultSet rs=preparedStatement.executeQuery();
+			while(rs.next()) {
+				bean.setCodice(rs.getInt("CODE"));
+				bean.setNome(rs.getString("NAME"));
+				bean.setDescrizione(rs.getString("DESCRIPTION"));
+				bean.setPrezzo(rs.getInt("PRICE"));
+				bean.setQuantita(rs.getInt("QUANTITY"));
+				prodotti.add(bean);
+			}
+		}finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			}finally {
+				if(connection!=null)
+					connection.close();
+			}
+		}
+		return prodotti;
+	}
+	
+	public synchronized Collection<ProdottoBean> doRetrieveAllProducts() throws SQLException {
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		Collection<ProdottoBean> prodotti=new LinkedList<ProdottoBean>();
+		String selectSQL="SELECT * FROM "+ProdottoModelDS.TABLE_NAME;
+		
+		try {
+			//Mi connetto al database e passo la select
+			connection=ds.getConnection();
+			preparedStatement=connection.prepareStatement(selectSQL);
+			//Nel result sara contenuto l intero catalogo
+			ResultSet rs=preparedStatement.executeQuery();
+			//Scorro tutto result e creo un bean per ogni prodotto e lo aggiungo ai prodotti
+			while(rs.next()) {
+				ProdottoBean bean=new ProdottoBean();
+				bean.setCodice(rs.getInt("CODE"));
+				bean.setNome(rs.getString("NAME"));
+				bean.setDescrizione(rs.getString("DESCRIPTION"));
+				bean.setPrezzo(rs.getInt("PRICE"));
+				bean.setQuantita(rs.getInt("QUANTITY"));
+				prodotti.add(bean);
+			}
+		}finally {//chiudo statement e connessione se aperte
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			}finally {
+				if(connection!=null)
+					connection.close();
+			}
+		}
+		return prodotti;
+	}
+	
 	
 	//Metodo per restiturire i prodotti acquistati da un utente 
 	public synchronized static ArrayList<ProdottoBean> doRetrieveByEmail(String email) throws SQLException{

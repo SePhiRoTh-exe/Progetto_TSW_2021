@@ -35,7 +35,8 @@ public class UserControl extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 		}catch(SQLException e) {
-			System.out.println("Errore "+e.getMessage());
+			session.setAttribute("alertMsg","Errore, ritorno alla Homepage");
+			response.sendRedirect("./HomePage.jsp");	
 		}
 	}
 }

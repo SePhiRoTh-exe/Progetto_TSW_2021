@@ -16,7 +16,7 @@ import datasource.ProdottoModel;
 import datasource.ProdottoModelDS;
 import model.Carrello;
 
-public class ViewCartControl {
+public class ViewCartControl extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	static ProdottoModel model=new ProdottoModelDS();

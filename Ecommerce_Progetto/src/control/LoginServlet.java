@@ -19,6 +19,7 @@ public class LoginServlet extends HttpServlet{
 		super();
 	}
 	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
+		HttpSession session = request.getSession();
 		try {
 			UserBean user=new UserBean();
 			user.setUsername(request.getParameter("Username"));
@@ -26,7 +27,6 @@ public class LoginServlet extends HttpServlet{
 			user=UserModelDS.doRetrieve(user);
 			if(user.isValid())
 			{
-				HttpSession session=request.getSession(true);
 				session.setAttribute("user", user);
 				response.sendRedirect("Home.jsp");
 			}
@@ -37,7 +37,8 @@ public class LoginServlet extends HttpServlet{
 		}
 		catch(Throwable e)
 		{
-			System.out.println(e);
+			session.setAttribute("alertMsg","Errore, ritorno alla Homepage");
+			response.sendRedirect("./HomePage.jsp");	
 		}
 	}
 	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{

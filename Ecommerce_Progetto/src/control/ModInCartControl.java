@@ -15,7 +15,7 @@ import datasource.ProdottoModel;
 import datasource.ProdottoModelDS;
 import model.Carrello;
 
-public class ModInCartControl {
+public class ModInCartControl extends HttpServlet {
 	public ModInCartControl() {
 		super();
 	}

@@ -15,18 +15,22 @@ public class Carrello {
 	public float returnTotale() {
 		return totale;
 	}
-	public void addProdotto(ProdottoBean prodotto) {
+	public boolean addProdotto(int idProd) throws SQLException {
+		ProdottoModelDS productds=new ProdottoModelDS();
+		ProdottoBean p=productds.doRetrieveByKey(idProd);
+		
 		for(ProdottoCarrello pr: prodotti) {
-			if(pr.getProduct().getCodice()==prodotto.getCodice() && pr.getProduct().getQuantita()+1 < prodotto.getQuantita())
+			if(pr.getProduct().getCodice()==p.getCodice() && pr.getProduct().getQuantita()+1 < p.getQuantita())
 			{
 				pr.setQuantità(pr.getQuantità()+1);
 				this.getTotale();
-				return;
+				return true;
 			}
 		}
-		ProdottoCarrello product = new ProdottoCarrello(prodotto,1);
+		ProdottoCarrello product = new ProdottoCarrello(p,1);
 		prodotti.add(product);
 		this.getTotale();
+		return true;
 	}
 	public boolean modQuantità(int idProd, int quantita) {
 		
