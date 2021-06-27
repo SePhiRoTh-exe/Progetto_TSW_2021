@@ -2,20 +2,16 @@ package control;
 import java.io.IOException;
 
 
-import java.sql.SQLException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import datasource.ProdottoModel;
-import datasource.ProdottoModelDS;
 import model.Carrello;
 
 public class ModInCartControl extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 	public ModInCartControl() {
 		super();
 	}
@@ -25,8 +21,11 @@ public class ModInCartControl extends HttpServlet {
 		//Prendo dalla sessione il contenuto del carrello
 			Carrello carrello=(Carrello)request.getSession().getAttribute("cart");
 			int changeQ = Integer.parseInt(request.getParameter("change"));
-			long id= Long.parseLong(request.getParameter("idProd"));
-			carrello.modQuantità(changeQ, changeQ);
+			//HO MESSO L ID DI TIPO INTERO MOMENTANEAMENTE ALTRIMENTI ANDAVANO CAMBIATE TROPPE COSE AL MOMENTO ANCHE NEL DATABASE
+			//long id= Long.parseLong(request.getParameter("idProd"));
+			int id=Integer.parseInt(request.getParameter("idProd"));
+			//QUA IN MOD QUANTITA NON ERA STATO MESSO L ID MA DI NUOVO LA QUANTITA
+			carrello.modQuantità(id, changeQ);
 			response.sendRedirect("./Carrello.jsp");
 			
 			}
@@ -34,12 +33,6 @@ public class ModInCartControl extends HttpServlet {
 				session.setAttribute("alertMsg", "accesso non autorizzato");
 				response.sendRedirect("./Home.jsp");
 			}
-			
-		
-		
-					
-		
-
 }
 }
 

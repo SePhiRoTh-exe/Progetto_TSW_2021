@@ -56,7 +56,7 @@ public class PlaceOrderControl extends HttpServlet {
 		}
 		catch(SQLException e) {
 			session.setAttribute("alertMsg","Errore, ritorno alla Homepage");
-			response.sendRedirect("./HomePage.jsp");	
+			response.sendRedirect("./Home.jsp");	
 			
 		}
 	}
