@@ -1,6 +1,26 @@
 package model;
 
 public class UserBean {
+	
+	public UserBean() {
+		
+	}
+	public UserBean(String nome, String cognome, String username, String password, String email, String paymentMethod
+			) {
+		this.nome = nome;
+		this.cognome = cognome;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.paymentMethod = paymentMethod;
+		
+	}
+	public String getPaymentMethod() {
+		return paymentMethod;
+	}
+	public void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod = paymentMethod;
+	}
 	public String getNome() {
 		return this.nome;
 	}
@@ -37,6 +57,6 @@ public class UserBean {
 	public void setEmail(String email) {
 		this.email=email;
 	}
-	private String nome,cognome,username,password,email;
+	private String nome,cognome,username,password,email,paymentMethod;
 	public boolean valid;
 }

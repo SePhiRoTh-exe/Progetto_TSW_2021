@@ -91,7 +91,8 @@ public class UserModelDS {
 	public static synchronized boolean doSave(UserBean bean) throws SQLException{
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
-		String insertSQL="INSERT INTO STORAGE."+TABLE_NAME+"(EMAIL, NOME, COGNOME, USERNAME, PASSWORD) VALUES ("+bean.getEmail()+", "+bean.getNome()+", "+bean.getCognome()+", "+bean.getUsername()+", "+bean.getPassword()+")";
+		//devi aggiungere meotodo di pagamento nella tua tabella sql
+		String insertSQL="INSERT INTO STORAGE."+TABLE_NAME+"(EMAIL, NOME, COGNOME, USERNAME, PASSWORD,PAYMENT) VALUES ("+bean.getEmail()+", "+bean.getNome()+", "+bean.getCognome()+", "+bean.getUsername()+", "+bean.getPassword()+","+bean.getPaymentMethod()+")";
 		try {
 			connection=ds.getConnection();
 			preparedStatement=connection.prepareCall(insertSQL);
