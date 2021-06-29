@@ -3,6 +3,7 @@ package control;
 import java.io.IOException;
 
 
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -31,8 +32,7 @@ public class ProductCatalogueControl extends HttpServlet {
 			
 			
 			ArrayList <ProdottoBean> prodotti = new ArrayList<ProdottoBean>(pds.doRetrieveAllProducts());
-			
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/HomePage.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Home.jsp");
 			dispatcher.forward(request, response);
 			
 		}
