@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<link href="style.css" rel="stylesheet" type="text/css">
-		<title>Ecommerce</title>
+		<title>VGHUB</title>
 	</head>
 	<body>
 		<%@ include file="../section/navbar.jsp" %>
@@ -16,5 +16,6 @@
 			<input type="text" name="Password" placeholder="Password"><br>
 			<input type="submit" value="Login">
 		</form>
+		<h3><a href="RegisterPage.jsp">Registrati</a></h3>
 	</body>
 </html>

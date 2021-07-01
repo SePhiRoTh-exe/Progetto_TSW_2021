@@ -11,12 +11,28 @@
     <res-auth>Container</res-auth>
   </resource-ref>
   <servlet>
-    <servlet-name>ProdottoControl</servlet-name>
-    <servlet-class>control.ProdottoControl</servlet-class>
+    <servlet-name>ProductCatalogueControl</servlet-name>
+    <servlet-class>control.ProductCatalogueControl</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ProductViewControl</servlet-name>
+    <servlet-class>control.ProductViewControl</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddToCartControl</servlet-name>
+    <servlet-class>control.AddToCartControl</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>RemoveFromCartControl</servlet-name>
+    <servlet-class>control.RemoveFromCartControl</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>LoginServlet</servlet-name>
   	<servlet-class>control.LoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>LogoutControl</servlet-name>
+  	<servlet-class>control.LogoutControl</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>PlaceOrderControl</servlet-name>
@@ -27,12 +43,28 @@
   	<servlet-class>control.UserControl</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ProdottoControl</servlet-name>
-    <url-pattern>/product</url-pattern>
+    <servlet-name>ProductCatalogueControl</servlet-name>
+    <url-pattern>/catalogo</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+  	<servlet-name>ProductViewControl</servlet-name>
+  	<url-pattern>/prodotto</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AddToCartControl</servlet-name>
+  	<url-pattern>/addCarrello</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RemoveFromCartControl</servlet-name>
+  	<url-pattern>/removeCarrello</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>LoginServlet</servlet-name>
   	<url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LogoutControl</servlet-name>
+  	<url-pattern>/logout</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>PlaceOrderControl</servlet-name>

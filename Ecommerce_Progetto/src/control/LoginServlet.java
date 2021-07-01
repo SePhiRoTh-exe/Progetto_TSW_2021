@@ -28,7 +28,10 @@ public class LoginServlet extends HttpServlet{
 			user=UserModelDS.doRetrieve(user);
 			if(user.isValid())
 			{
-				session.setAttribute("user", user);
+				if(user.isAdmin())
+					session.setAttribute("manager", user);
+				else
+					session.setAttribute("utente", user);
 				response.sendRedirect("Home.jsp");
 			}
 			else

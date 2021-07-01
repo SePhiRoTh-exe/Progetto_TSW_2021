@@ -13,6 +13,8 @@ import model.UserBean;
 
 public class RegisterControl extends HttpServlet {
 
+	private static final long serialVersionUID = 1L;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		HttpSession session = request.getSession();
@@ -27,6 +29,8 @@ public class RegisterControl extends HttpServlet {
 			String email=request.getParameter("userEmail"); 
 			String paymentInst=request.getParameter("userPaymentInst");
 			
+			/*da cambiare questa parte perche la gestione del metodo di pagamento non puo essere fatta alla registrazione ma deve essere gestita dalla 
+			 * user page ed aggiunta o in un secondo momento oppure al checkout*/
 			String paymentCo=request.getParameter("userPaymentCode");
 			String paymentExpMonth=request.getParameter("userPaymentExpMonth");
 			String paymentExpyear=request.getParameter("userPaymentExpYear");

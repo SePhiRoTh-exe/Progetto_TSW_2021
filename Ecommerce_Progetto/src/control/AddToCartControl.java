@@ -16,22 +16,27 @@ public class AddToCartControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
+		//CONFIGURATA NEL XML
 		HttpSession session = request.getSession();
 		try {
-				if(request.getAttribute("utente")!=null) {
-					Carrello cart = (Carrello) request.getAttribute("cart");
-					int id = (int) request.getAttribute("idProd");
+				if(session.getAttribute("utente")!=null) {
+					Carrello cart = (Carrello) session.getAttribute("cart");
 					
-						cart.addProdotto(id);
-						
+					//LA VIEWCARTCONTROL NON SERVE POICHE IL CARRELLO E' GESTITO NELLA SESSIONE E LA JSP CONTROLLA SE ESISTE O MENO
+					if(cart==null)
+					{
+						cart=new Carrello();
+					}
+					int id = Integer.parseInt(request.getParameter("idProd"));
+					cart.addProdotto(id);
+					session.setAttribute("cart", cart);
 					response.sendRedirect("./Carrello.jsp");
 					
 				}
 				
 				else {
 					session.setAttribute("alertMsg","Accesso non autorizzato");
-					response.sendRedirect("/Home.jsp");
+					response.sendRedirect("./Home.jsp");
 				}
 		
 	}

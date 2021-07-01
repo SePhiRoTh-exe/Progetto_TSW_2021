@@ -19,7 +19,7 @@ import datasource.ProdottoModelDS;
 
 
 public class ProductCatalogueControl extends HttpServlet {
-
+	//CONFIGURATA NEL XML
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -29,9 +29,8 @@ public class ProductCatalogueControl extends HttpServlet {
 		try {
 		if(request.getParameter("catalog")==null) {
 			
-			
-			
 			ArrayList <ProdottoBean> prodotti = new ArrayList<ProdottoBean>(pds.doRetrieveAllProducts());
+			request.setAttribute("prodotti", prodotti);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Home.jsp");
 			dispatcher.forward(request, response);
 			

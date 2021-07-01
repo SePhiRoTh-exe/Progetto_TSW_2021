@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	Collection<?> prodotti = (Collection<?>) request.getAttribute("products");
+	Collection<?> prodotti = (Collection<?>) request.getAttribute("prodotti");
 	if(prodotti == null) {
-		response.sendRedirect("./product");	
+		response.sendRedirect("./catalogo");	
 		return;
 	}
-	ProdottoBean prodotto = (ProdottoBean) request.getAttribute("product");
 	Carrello carrello=(Carrello) request.getAttribute("cart");
 %>
 <!DOCTYPE html>
@@ -31,15 +30,17 @@
 				if(prodotti!=null && prodotti.size()!=0)
 				{
 					Iterator<?> it = prodotti.iterator();
-					while(it.hasNext())
+					int i=0;
+					while(it.hasNext() && i<15)
 					{
+						i++;
 						ProdottoBean bean=(ProdottoBean) it.next();
 			%>
 			<tr>
 				<td><%=bean.getNome() %></td>
 				<td>$<%=bean.getPrezzo() %></td>
-				<td><a href="product?action=view&id=<%=bean.getCodice()%>">Vedi Descrizione</a></td>
-				<td><a href="product?action=addC&id=<%=bean.getCodice()%>">Aggiungi al carrello</a></td>
+				<td><a href="prodotto?idProd=<%=bean.getCodice()%>">Visualizza</a></td>
+				<td><a href="addCarrello?idProd=<%=bean.getCodice()%>">Aggiungi al carrello</a></td>
 			</tr>
 			<%
 					}

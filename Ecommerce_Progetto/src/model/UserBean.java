@@ -13,7 +13,7 @@ public class UserBean {
 		this.password = password;
 		this.email = email;
 		this.paymentMethod = paymentMethod;
-		
+		this.admin=false;
 	}
 	public String getPaymentMethod() {
 		return paymentMethod;
@@ -57,6 +57,12 @@ public class UserBean {
 	public void setEmail(String email) {
 		this.email=email;
 	}
+	public void setAdmin(boolean value) {
+		this.admin=value;
+	}
+	public boolean isAdmin() {
+		return admin;
+	}
 	private String nome,cognome,username,password,email,paymentMethod;
-	public boolean valid;
+	public boolean valid,admin;
 }

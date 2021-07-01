@@ -43,7 +43,7 @@ public class Carrello {
 			int pos=this.isInCart(p);
 			prodotti.get(pos).setQuantità(prodotti.get(pos).getQuantità() + quantita);
 			if(prodotti.get(pos).getQuantità()==0) {
-				this.deleteProdotto(p);
+				this.deleteProdotto(p.getCodice());
 			}
 			this.getTotale();
 			return true;
@@ -66,10 +66,10 @@ public class Carrello {
 		if(quantitadesiderata>p.getQuantita()) return false;
 		return true;
 	}
-	public void deleteProdotto(ProdottoBean prodotto) {
+	public void deleteProdotto(int idProd) {
 		//elimino il prodotto nel carrello tramite codice identificativo
 		for(ProdottoCarrello pr:prodotti) {
-			if(pr.getProduct().getCodice()==prodotto.getCodice())
+			if(pr.getProduct().getCodice()==idProd)
 			{
 				prodotti.remove(pr);
 				this.getTotale();

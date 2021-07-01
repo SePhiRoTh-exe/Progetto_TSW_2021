@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <% ProdottoBean prodotto = (ProdottoBean) request.getAttribute("product"); %>
+    <% ProdottoBean prodotto = (ProdottoBean) request.getAttribute("prodotto"); 
+    	
+    %>
+    <!-- DA AGGIUNGERE RITORNO A PAGINA DI ERRORE IN CASO DI PRODOTTO NULL ED AGGIUNGERE IL CONTROLLO UTENTE-->
 <!DOCTYPE html>
 <html>
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.ProdottoBean,model.Carrello"%>
@@ -20,7 +23,7 @@
 		</tr>
 		<tr>
 			<td><%=prodotto.getDescrizione() %></td>
-			<td><a href="product?action=addC&id=<%=prodotto.getCodice()%>">Aggiungi al carrello</a></td>
+			<td><a href="addCarrello?idProd=<%=prodotto.getCodice()%>">Aggiungi al carrello</a></td>
 		</tr>
 	</table>
 </body>

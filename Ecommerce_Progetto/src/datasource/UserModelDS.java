@@ -40,6 +40,7 @@ public class UserModelDS {
 				bean.setNome(rs.getString("Nome"));
 				bean.setCognome(rs.getString("Cognome"));
 				bean.setEmail(rs.getString("Email"));
+				bean.setAdmin(rs.getBoolean("Admin"));
 				bean.setValid(true);
 			}
 		}
@@ -74,6 +75,7 @@ public class UserModelDS {
 			bean.setPassword(rs.getString("Password"));
 			bean.setEmail(email);
 			bean.setValid(true);
+			bean.setAdmin(rs.getBoolean("Admin"));
 		}
 		finally
 		{
@@ -92,7 +94,7 @@ public class UserModelDS {
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
 		//devi aggiungere meotodo di pagamento nella tua tabella sql
-		String insertSQL="INSERT INTO STORAGE."+TABLE_NAME+"(EMAIL, NOME, COGNOME, USERNAME, PASSWORD,PAYMENT) VALUES ("+bean.getEmail()+", "+bean.getNome()+", "+bean.getCognome()+", "+bean.getUsername()+", "+bean.getPassword()+","+bean.getPaymentMethod()+")";
+		String insertSQL="INSERT INTO STORAGE."+TABLE_NAME+"(EMAIL, NOME, COGNOME, USERNAME, PASSWORD, ADMIN, PAYMENT) VALUES ("+bean.getEmail()+", "+bean.getNome()+", "+bean.getCognome()+", "+bean.getUsername()+", "+bean.getPassword()+","+false+","+bean.getPaymentMethod()+")";
 		try {
 			connection=ds.getConnection();
 			preparedStatement=connection.prepareCall(insertSQL);

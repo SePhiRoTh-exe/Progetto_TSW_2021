@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <% UserBean user=(UserBean) request.getSession().getAttribute("user");
+    <% UserBean user=(UserBean) request.getSession().getAttribute("utente");
+    	if(user==null)
+    	{
+    		response.sendRedirect("LoginPage.jsp");
+    	}
     	ArrayList<?> prodottiOrdinati=(ArrayList<?>) request.getAttribute("orders");%>
 <!DOCTYPE html>
 <html>
@@ -13,7 +17,9 @@
 <body>
 <%@ include file="../section/navbar.jsp" %>
 	<h1>Ciao <%=user.getNome() %></h1>
+	<h2><a>Dettagli Account</a></h2>
 	<h2><a href="userSettings?action=vieworders">Elenco Ordini</a></h2><br>
+	<h2><a href="logout">Disconnetti</a></h2><br>
 	<%if(prodottiOrdinati!=null && prodottiOrdinati.size()!=0) { %>
 	<table>
 		<%Iterator<?> it=prodottiOrdinati.iterator();

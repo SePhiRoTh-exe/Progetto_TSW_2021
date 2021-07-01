@@ -25,14 +25,17 @@ public class LogoutControl extends HttpServlet {
 				//con successo
 				session.removeAttribute("utente");
 				session.removeAttribute("manager");
+				session.removeAttribute("cart");
 				session.setAttribute("alertMsg", "Logout effettuato con successo.");
-				response.sendRedirect("./HomePage.jsp");
+				response.sendRedirect("./Home.jsp");
 			}
 		}catch(Exception e2) {
 			
 			session.setAttribute("alertMsg","Errore, ritorno alla Homepage");
-			response.sendRedirect("./HomePage.jsp");	
+			response.sendRedirect("./Home.jsp");	
 			}
 	}
-
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		doGet(request,response);
+	}
 }

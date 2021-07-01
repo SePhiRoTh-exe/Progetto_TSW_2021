@@ -1,11 +1,9 @@
 package control;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,8 +14,10 @@ import datasource.ProdottoModelDS;
 
 public class ProductViewControl extends HttpServlet {
 	
+	//CONFIGURATA NEL XML
 	//visualizzazione di un prodotto
 	
+	private static final long serialVersionUID = 1L;
 		static ProdottoModelDS pm=new ProdottoModelDS();
 		public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 			HttpSession session=request.getSession();
