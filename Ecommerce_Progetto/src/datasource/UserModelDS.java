@@ -63,19 +63,23 @@ public class UserModelDS {
 	public static synchronized UserBean doRetrieve(String email) throws SQLException {
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
-		String UserSelectSQL="SELECT * FROM "+UserModelDS.TABLE_NAME+" WHERE EMAIL ='"+email+"'";
-		UserBean bean=null;
+		String UserSelectSQL="SELECT * FROM "+TABLE_NAME+" WHERE EMAIL ='"+email+"'";
+		UserBean bean=new UserBean();
 		try {
 			connection=ds.getConnection();
 			preparedStatement=connection.prepareStatement(UserSelectSQL);
 			ResultSet rs=preparedStatement.executeQuery(UserSelectSQL);
-			bean.setNome(rs.getString("Nome"));
-			bean.setCognome(rs.getString("Cognome"));
-			bean.setUsername(rs.getString("Username"));
-			bean.setPassword(rs.getString("Password"));
-			bean.setEmail(email);
-			bean.setValid(true);
-			bean.setAdmin(rs.getBoolean("Admin"));
+			boolean exist=rs.next();
+			if(!exist) bean.setValid(false);
+			else {
+				bean.setNome(rs.getString("Nome"));
+				bean.setCognome(rs.getString("Cognome"));
+				bean.setUsername(rs.getString("Username"));
+				bean.setPassword(rs.getString("Password"));
+				bean.setEmail(email);
+				bean.setValid(true);
+				bean.setAdmin(rs.getBoolean("Admin"));
+			}
 		}
 		finally
 		{
@@ -94,10 +98,16 @@ public class UserModelDS {
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
 		//devi aggiungere meotodo di pagamento nella tua tabella sql
-		String insertSQL="INSERT INTO STORAGE."+TABLE_NAME+"(EMAIL, NOME, COGNOME, USERNAME, PASSWORD, ADMIN, PAYMENT) VALUES ("+bean.getEmail()+", "+bean.getNome()+", "+bean.getCognome()+", "+bean.getUsername()+", "+bean.getPassword()+","+false+","+bean.getPaymentMethod()+")";
+		String insertSQL="INSERT INTO STORAGE."+TABLE_NAME+"(EMAIL, NOME, COGNOME, USERNAME, PASSWORD, ADMIN) VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			connection=ds.getConnection();
-			preparedStatement=connection.prepareCall(insertSQL);
+			preparedStatement=connection.prepareStatement(insertSQL);
+			preparedStatement.setString(1, bean.getEmail());
+			preparedStatement.setString(2, bean.getNome());
+			preparedStatement.setString(3, bean.getCognome());
+			preparedStatement.setString(4, bean.getUsername());
+			preparedStatement.setString(5, bean.getPassword());
+			preparedStatement.setBoolean(6, false);
 			preparedStatement.executeUpdate();
 		}
 		finally

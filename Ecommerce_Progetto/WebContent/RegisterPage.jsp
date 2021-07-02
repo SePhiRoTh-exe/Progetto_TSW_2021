@@ -7,29 +7,29 @@
 <title>Prova</title>
 </head>
 <body>
-	<form action="logout" method="post" onsubmit="return validate();">
+	<form action="register" method="post" onsubmit="return validate();">
 					<h1>Registrazione</h1>
 					<label>
 						<span>Username</span>
-						<input type="text" name="nome" id="nome">
+						<input type="text" name="Username" id="Username">
 					</label>
 					<label>
 						<span>Nome</span>
-						<input type="text" name="nome" id="nome">
+						<input type="text" name="Nome" id="Nome">
 					</label>
 					<label>
 						<span>Cognome</span>
-						<input type="text" name="cognome" id="cognome">
+						<input type="text" name="Cognome" id="Cognome">
 					</label>
 					<label>
 						<span>Email</span>
-						<input type="text" name="email" id="email">
+						<input type="text" name="Email" id="Email">
 					</label>
 					<label>
 						<span>Password</span>
-						<input type="password" name="password" id="password">
+						<input type="password" name="Password" id="Password">
 					</label>
-				<input type="submit" name="registrazione" value="Register">
+				<input type="submit" name="registrazione" value="Registrati">
 	</form>
 	<script src="js/validazione.js"></script>
 </body>

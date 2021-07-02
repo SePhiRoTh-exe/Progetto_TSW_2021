@@ -5,14 +5,12 @@ public class UserBean {
 	public UserBean() {
 		
 	}
-	public UserBean(String nome, String cognome, String username, String password, String email, String paymentMethod
-			) {
+	public UserBean(String nome, String cognome, String username, String password, String email) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.username = username;
 		this.password = password;
 		this.email = email;
-		this.paymentMethod = paymentMethod;
 		this.admin=false;
 	}
 	public String getPaymentMethod() {

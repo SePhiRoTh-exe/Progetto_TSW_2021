@@ -2,7 +2,6 @@ package control;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,34 +17,35 @@ public class RegisterControl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		HttpSession session = request.getSession();
-		UserModelDS usr = new UserModelDS();
 		
-		if(session.getAttribute("user")==null || session.getAttribute("admin")==null) {
+		if(session.getAttribute("user")==null && session.getAttribute("manager")==null) {
 			
-			String nome=request.getParameter("Name");  
-			String cognome=request.getParameter("Surname");
-			String username=request.getParameter("userName");
-			String psw=request.getParameter("userPass");  
-			String email=request.getParameter("userEmail"); 
-			String paymentInst=request.getParameter("userPaymentInst");
+			String nome=request.getParameter("Nome");  
+			String cognome=request.getParameter("Cognome");
+			String username=request.getParameter("Username");
+			String psw=request.getParameter("Password");  
+			String email=request.getParameter("Email"); 
+			//String paymentInst=request.getParameter("userPaymentInst");
 			
 			/*da cambiare questa parte perche la gestione del metodo di pagamento non puo essere fatta alla registrazione ma deve essere gestita dalla 
 			 * user page ed aggiunta o in un secondo momento oppure al checkout*/
+			/*
 			String paymentCo=request.getParameter("userPaymentCode");
 			String paymentExpMonth=request.getParameter("userPaymentExpMonth");
 			String paymentExpyear=request.getParameter("userPaymentExpYear");
 			String paymentCvv=request.getParameter("userPaymentCvv");
 			String payment=paymentInst+", "+paymentCo+", "+paymentExpMonth+"/"+paymentExpyear+", "+paymentCvv;
+			*/
 			
 			try {
-				UserBean user = new UserBean(nome, cognome, username, psw, email, payment );
-				usr.doSave(user);
-				
-				if(usr.doRetrieve(email)==null) {
+				UserBean user = new UserBean(nome, cognome, username, psw, email);
+				if(UserModelDS.doRetrieve(email).isValid()) {
+					//SE E VALIDO VUOL DIRE CHE ESISTE GIA UN UTENTE CON QUESTA EMAIL
 					session.setAttribute("alertMsg", "Registrazione fallita.");
-					response.sendRedirect("./Signup.jsp");
+					response.sendRedirect("./LoginPage.jsp");
 				}
 				else {
+					UserModelDS.doSave(user);
 					session.setAttribute("alertMsg", "Registrazione effettuata con successo");
 					session.setAttribute("utente", user);
 					response.sendRedirect("./Home.jsp");
@@ -62,5 +62,8 @@ public class RegisterControl extends HttpServlet {
 			session.setAttribute("alertMsg", "non è possibile registrarsi");
 			response.sendRedirect("./Home.jsp");
 		}
+	}
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		doGet(request,response);
 	}
 }
