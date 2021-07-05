@@ -39,6 +39,10 @@
   	<servlet-class>control.LogoutControl</servlet-class>
   </servlet>
   <servlet>
+  	<servlet-name>UserOrderSearchControl</servlet-name>
+  	<servlet-class>control.UserOrderSearchControl</servlet-class>
+  </servlet>
+  <servlet>
   	<servlet-name>PlaceOrderControl</servlet-name>
   	<servlet-class>control.PlaceOrderControl</servlet-class>
   </servlet>
@@ -73,6 +77,10 @@
   <servlet-mapping>
   	<servlet-name>LogoutControl</servlet-name>
   	<url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UserOrderSearchControl</servlet-name>
+  	<url-pattern>/visualizzaOrdini</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>PlaceOrderControl</servlet-name>
