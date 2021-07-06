@@ -1,6 +1,5 @@
 package control;
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,17 +24,6 @@ public class RegisterControl extends HttpServlet {
 			String username=request.getParameter("Username");
 			String psw=request.getParameter("Password");  
 			String email=request.getParameter("Email"); 
-			//String paymentInst=request.getParameter("userPaymentInst");
-			
-			/*da cambiare questa parte perche la gestione del metodo di pagamento non puo essere fatta alla registrazione ma deve essere gestita dalla 
-			 * user page ed aggiunta o in un secondo momento oppure al checkout*/
-			/*
-			String paymentCo=request.getParameter("userPaymentCode");
-			String paymentExpMonth=request.getParameter("userPaymentExpMonth");
-			String paymentExpyear=request.getParameter("userPaymentExpYear");
-			String paymentCvv=request.getParameter("userPaymentCvv");
-			String payment=paymentInst+", "+paymentCo+", "+paymentExpMonth+"/"+paymentExpyear+", "+paymentCvv;
-			*/
 			
 			try {
 				UserBean user = new UserBean(nome, cognome, username, psw, email);
@@ -52,7 +40,7 @@ public class RegisterControl extends HttpServlet {
 				}
 			}
 			
-			catch(SQLException e) {
+			catch(Exception e) {
 				session.setAttribute("alertMsg","Errore, ritorno alla Homepage");
 				response.sendRedirect("./HomePage.jsp");	
 			}

@@ -10,6 +10,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import model.PasswordCrypt;
 import model.UserBean;
 
 public class UserModelDS {
@@ -22,11 +23,12 @@ public class UserModelDS {
 			System.out.println("Errore:" + e.getMessage());
 		}
 	}
-	public static synchronized UserBean doRetrieve(UserBean bean) throws SQLException{
+	public static synchronized UserBean doRetrieve(UserBean bean) throws Exception{
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
+		PasswordCrypt crypt=new PasswordCrypt();
 		String username=bean.getUsername();
-		String password=bean.getPassword();
+		String password=crypt.encrypt(bean.getPassword());
 		String selectSQL="SELECT * FROM "+TABLE_NAME+" WHERE USERNAME='"+username+"' AND PASSWORD='"+password+"'";
 		try {
 			connection=ds.getConnection();
@@ -94,10 +96,11 @@ public class UserModelDS {
 		return bean;
 	}
 	
-	public static synchronized boolean doSave(UserBean bean) throws SQLException{
+	public static synchronized boolean doSave(UserBean bean) throws Exception{
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
-		//devi aggiungere meotodo di pagamento nella tua tabella sql
+		
+		PasswordCrypt crypt=new PasswordCrypt();
 		String insertSQL="INSERT INTO STORAGE."+TABLE_NAME+"(EMAIL, NOME, COGNOME, USERNAME, PASSWORD, ADMIN) VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			connection=ds.getConnection();
@@ -106,7 +109,7 @@ public class UserModelDS {
 			preparedStatement.setString(2, bean.getNome());
 			preparedStatement.setString(3, bean.getCognome());
 			preparedStatement.setString(4, bean.getUsername());
-			preparedStatement.setString(5, bean.getPassword());
+			preparedStatement.setString(5, crypt.encrypt(bean.getPassword()));
 			preparedStatement.setBoolean(6, false);
 			preparedStatement.executeUpdate();
 		}
