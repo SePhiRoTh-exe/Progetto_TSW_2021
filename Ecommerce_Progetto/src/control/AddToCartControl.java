@@ -36,7 +36,7 @@ public class AddToCartControl extends HttpServlet {
 				
 				else {
 					session.setAttribute("alertMsg","Accesso non autorizzato");
-					response.sendRedirect("./Home.jsp");
+					response.sendRedirect("./LoginPage.jsp");
 				}
 		
 	}

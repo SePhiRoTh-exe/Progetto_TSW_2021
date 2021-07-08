@@ -42,6 +42,8 @@ public class ProdottoModelDS implements ProdottoModel{
 				bean.setDescrizione(rs.getString("DESCRIPTION"));
 				bean.setPrezzo(rs.getInt("PRICE"));
 				bean.setQuantita(rs.getInt("QUANTITY"));
+				bean.setCategoria(rs.getString("CATEGORIA"));
+				bean.setPiattaforma(rs.getString("PIATTAFORMA"));
 			}
 		}finally {
 			try {
@@ -54,17 +56,17 @@ public class ProdottoModelDS implements ProdottoModel{
 		}
 		return bean;
 	}
-	public synchronized Collection<ProdottoBean> doRetrieveByCat(String cat) throws SQLException {
+	public synchronized Collection<ProdottoBean> doRetrieveByCat(String categoria) throws SQLException {
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
 		Collection<ProdottoBean> prodotti=new ArrayList<ProdottoBean>();
 		ProdottoBean bean=new ProdottoBean();
-		String selectSQL="SELECT * FROM "+ProdottoModelDS.TABLE_NAME+" WHERE CATEGORY = ?";
+		String selectSQL="SELECT * FROM "+ProdottoModelDS.TABLE_NAME+" WHERE CATEGORIA = ?";
 		try {
 			connection=ds.getConnection();
 			preparedStatement=connection.prepareStatement(selectSQL);
 			//da modificare!!!
-			preparedStatement.setString(1, cat);
+			preparedStatement.setString(1, categoria);
 			ResultSet rs=preparedStatement.executeQuery();
 			while(rs.next()) {
 				bean.setCodice(rs.getInt("CODE"));
@@ -72,6 +74,8 @@ public class ProdottoModelDS implements ProdottoModel{
 				bean.setDescrizione(rs.getString("DESCRIPTION"));
 				bean.setPrezzo(rs.getInt("PRICE"));
 				bean.setQuantita(rs.getInt("QUANTITY"));
+				bean.setCategoria(rs.getString("CATEGORIA"));
+				bean.setPiattaforma(rs.getString("PIATTAFORMA"));
 				prodotti.add(bean);
 			}
 		}finally {
@@ -109,6 +113,8 @@ public class ProdottoModelDS implements ProdottoModel{
 				bean.setDescrizione(rs.getString("DESCRIPTION"));
 				bean.setPrezzo(rs.getInt("PRICE"));
 				bean.setQuantita(rs.getInt("QUANTITY"));
+				bean.setCategoria(rs.getString("CATEGORIA"));
+				bean.setPiattaforma(rs.getString("PIATTAFORMA"));
 				prodotti.add(bean);
 			}
 		}finally {//chiudo statement e connessione se aperte
@@ -140,6 +146,8 @@ public class ProdottoModelDS implements ProdottoModel{
 				bean.setDescrizione(rs.getString("DESCRIPTION"));
 				bean.setPrezzo(rs.getInt("PRICE"));
 				bean.setQuantita(rs.getInt("QUANTITY"));
+				bean.setCategoria(rs.getString("CATEGORIA"));
+				bean.setPiattaforma(rs.getString("PIATTAFORMA"));
 				prodotti.add(bean);
 			}
 		}finally {
@@ -174,6 +182,8 @@ public class ProdottoModelDS implements ProdottoModel{
 				bean.setDescrizione(rs.getString("DESCRIPTION"));
 				bean.setPrezzo(rs.getInt("PRICE"));
 				bean.setQuantita(rs.getInt("QUANTITY"));
+				bean.setCategoria(rs.getString("CATEGORIA"));
+				bean.setPiattaforma(rs.getString("PIATTAFORMA"));
 				prodotti.add(bean);
 			}
 		}finally {//chiudo statement e connessione se aperte
@@ -211,6 +221,8 @@ public class ProdottoModelDS implements ProdottoModel{
 				bean.setDescrizione(rs.getString("DESCRIPTION"));
 				bean.setPrezzo(rs.getInt("PREZZO"));
 				bean.setQuantita(rs.getInt("QUANTITA"));
+				bean.setCategoria(rs.getString("CATEGORIA"));
+				bean.setPiattaforma(rs.getString("PIATTAFORMA"));
 				prodotti.add(bean);
 			}
 		}finally {//chiudo statement e connessione se aperte

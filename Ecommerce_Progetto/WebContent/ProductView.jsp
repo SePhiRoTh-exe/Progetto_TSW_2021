@@ -19,10 +19,14 @@
 	<table>
 		<tr>
 			<th>Descrizione Gioco: <%=prodotto.getNome() %></th>
+			<th>Categoria</th>
+			<th>Piattaforma</th>
 			<th></th>
 		</tr>
 		<tr>
 			<td><%=prodotto.getDescrizione() %></td>
+			<td><%=prodotto.getCategoria() %></td>
+			<td><%=prodotto.getPiattaforma() %></td>
 			<td><a href="addCarrello?idProd=<%=prodotto.getCodice()%>">Aggiungi al carrello</a></td>
 		</tr>
 	</table>

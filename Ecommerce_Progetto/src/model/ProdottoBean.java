@@ -40,13 +40,28 @@ public class ProdottoBean implements Serializable{
 	public void setDescrizione(String descrizione) {
 		this.descrizione=descrizione;
 	}
+	public void setPiattaforma(String piattaforma) {
+		this.piattaforma=piattaforma;
+	}
+	public String getPiattaforma() {
+		return piattaforma;
+	}
+	public void setCategoria(String categoria) {
+		this.categoria=categoria;
+	}
+	public String getCategoria() {
+		return categoria;
+	}
 	@Override
 	public String toString() {
 		return nome + " (" + codice + "), " + prezzo + " " + quantita + ". " + descrizione;
 	}
+	
 	int codice;
 	String nome;
 	String descrizione;
+	String piattaforma;
+	String categoria;
 	int prezzo;
 	int quantita;
 }
