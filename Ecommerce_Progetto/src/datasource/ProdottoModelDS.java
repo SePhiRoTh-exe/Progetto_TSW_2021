@@ -199,19 +199,19 @@ public class ProdottoModelDS implements ProdottoModel{
 	}
 	
 	
-	//Metodo per restiturire i prodotti acquistati da un utente 
-	public synchronized static ArrayList<ProdottoBean> doRetrieveByEmail(String email) throws SQLException{
+	//Metodo per restiturire i prodotti di un ordine
+	public synchronized static ArrayList<ProdottoBean> doRetrieveById(long id) throws SQLException{
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
 		ArrayList<ProdottoBean> prodotti=new ArrayList<ProdottoBean>();
-		String selectSQL="select * from storage.order, product, product_order where order.Email = '"+email+"'\r\n"
+		String selectSQL="select * from storage.order, product, product_order where order.idOrdine = '"+id+"'\r\n"
 				+ "and product_order.idOrdine= order.idOrdine\r\n"
 				+ "and product.Code= product_order.Code";
 		try {
 			//Mi connetto al database e passo la select
 			connection=ds.getConnection();
 			preparedStatement=connection.prepareStatement(selectSQL);
-			//Nel result saranno contenuti tutti gli ordini effettuati dall utente
+			//Nel result saranno contenuti tutti i prodotti acquistati con uno specifico ordine
 			ResultSet rs=preparedStatement.executeQuery();
 			//Scorro tutto result e creo un bean per ogni prodotto e lo aggiungo ai prodotti
 			while(rs.next()) {
