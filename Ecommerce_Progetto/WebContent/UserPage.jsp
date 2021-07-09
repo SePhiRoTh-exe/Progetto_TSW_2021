@@ -20,20 +20,6 @@
 	<h2><a>Dettagli Account</a></h2>
 	<h2><a href="visualizzaOrdini">Elenco Ordini</a></h2><br>
 	<h2><a href="logout">Disconnetti</a></h2><br>
-	<%if(prodottiOrdinati!=null && prodottiOrdinati.size()!=0) { %>
-	<table>
-		<%Iterator<?> it=prodottiOrdinati.iterator();
-			while(it.hasNext()){
-				ProdottoBean bean =(ProdottoBean) it.next();
-		%>
-		<tr>
-			<td><%=bean.getNome() %></td>
-			<td><%=bean.getPrezzo() %></td>
-			<td><%=bean.getQuantita() %></td>
-		</tr>
-		<%} %>
-	</table>
-	<%} %>
 	<h2><a href="#">Info Account</a></h2>
 </body>
 </html>

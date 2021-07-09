@@ -23,18 +23,20 @@ public class PlaceOrderControl extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		try {
-			if(session.getAttribute("user")!=null) {
-				/*String email= (String) session.getAttribute("email");
-				utente = UserModelDS.doRetrieve(email);*/
-				utente=(UserBean) session.getAttribute("user");
+			if(session.getAttribute("utente")!=null) {
+				System.out.println("UTENTE PRESENTE");
+				utente=(UserBean) session.getAttribute("utente");
 				if(session.getAttribute("cart")!=null) {
+					System.out.println("CARRELLO PRESENTE");
 					Carrello cart = (Carrello) session.getAttribute("cart");
 					if(cart.getProdotti().size()==0) {
+						System.out.println("CARRELLO VUOTO");
 						session.setAttribute("alertMsg", "Errore, carrello vuoto");
 						response.sendRedirect("./Home.jsp");
 					}
 					else {	
 						if(OrdineModelDS.doSave(cart, utente)) {
+							System.out.println("ORDINE SALVATO");
 							session.setAttribute("cart", null);
 							session.setAttribute("alertMsg", "Ordine effettuato con successo");
 							response.sendRedirect("./Home.jsp");

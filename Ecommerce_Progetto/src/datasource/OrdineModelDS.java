@@ -32,7 +32,7 @@ public class OrdineModelDS {
 		PreparedStatement preparedStatement=null;
 		ArrayList<Ordine> listaOrdini=new ArrayList<Ordine>();
 		UserBean user=UserModelDS.doRetrieve(email);
-		String selectSQL="SELECT * FROM "+OrdineModelDS.TABLE_NAME+" WHERE EMAIL ='"+email+"'";
+		String selectSQL="SELECT * FROM STORAGE."+OrdineModelDS.TABLE_NAME+" WHERE EMAIL = '"+email+"'";
 		try {
 			connection=ds.getConnection();
 			preparedStatement=connection.prepareStatement(selectSQL);
