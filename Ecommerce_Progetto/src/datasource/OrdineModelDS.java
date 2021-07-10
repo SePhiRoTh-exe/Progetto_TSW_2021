@@ -52,10 +52,10 @@ public class OrdineModelDS {
 		}
 		return listaOrdini;
 	}
-	public static synchronized ArrayList<Ordine> doRetrieveById(String id) throws SQLException{
+	public static synchronized Ordine doRetrieveById(Long id) throws SQLException{
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
-		ArrayList<Ordine> listaOrdini=new ArrayList<Ordine>();
+		Ordine ordFound = null;
 		
 		String selectSQL="SELECT * FROM "+OrdineModelDS.TABLE_NAME+" WHERE ID ='"+id+"'";
 		try {
@@ -64,7 +64,7 @@ public class OrdineModelDS {
 			ResultSet rs=preparedStatement.executeQuery();
 			UserBean user=UserModelDS.doRetrieve(rs.getString("EMAIL"));
 			while(rs.next()) {
-				listaOrdini.add(new Ordine(rs.getLong("IDORDINE"),rs.getFloat("TOTALE"),rs.getString("STATO"),user,ProdottoModelDS.doRetrieveById(rs.getLong("IDORDINE"))));
+				ordFound = new Ordine(rs.getLong("IDORDINE"),rs.getFloat("TOTALE"),rs.getString("STATO"),user,ProdottoModelDS.doRetrieveById(rs.getLong("IDORDINE")));
 			}
 		}
 		finally {
@@ -76,7 +76,7 @@ public class OrdineModelDS {
 					connection.close();
 			}
 		}
-		return listaOrdini;
+		return ordFound;
 	}
 	public static synchronized boolean doSave(Carrello cart, UserBean user) throws SQLException{
 		Connection connection=null;
