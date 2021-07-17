@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import datasource.ProdottoModelDS;
+import datasource.MetodoPagamentoModelDS;
+import model.MetodoPagamentoBean;
 import model.UserBean;
 
 public class UserControl extends HttpServlet {
@@ -23,8 +24,9 @@ public class UserControl extends HttpServlet {
 		try {
 			if(utente!=null) {
 				String action=request.getParameter("action");
-				if(action.equalsIgnoreCase("vieworders")) {
-					request.setAttribute("orders", ProdottoModelDS.doRetrieveByEmail(utente.getEmail()));
+				if(action.equalsIgnoreCase("addPayment")) {
+					MetodoPagamentoBean metodoPagamento=new MetodoPagamentoBean(Integer.parseInt(request.getParameter("NumeroCarta")),request.getParameter("Circuito"),request.getParameter("Scadenza"),Integer.parseInt(request.getParameter("CVV")),request.getParameter("Nome"),request.getParameter("Cognome"),utente.getEmail());
+					MetodoPagamentoModelDS.doSave(metodoPagamento, utente.getEmail());
 					RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/UserPage.jsp");
 					dispatcher.forward(request, response);
 				}
