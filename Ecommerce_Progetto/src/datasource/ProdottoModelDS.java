@@ -1,6 +1,7 @@
 package datasource;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +14,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import model.Carrello;
 import model.ProdottoBean;
+import model.UserBean;
 
 public class ProdottoModelDS implements ProdottoModel{
 	static {
@@ -235,6 +238,43 @@ public class ProdottoModelDS implements ProdottoModel{
 			}
 		}
 		return prodotti;
+	}
+	public static synchronized boolean doSave(ProdottoBean bean) throws SQLException{
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		
+		
+		
+		//Salvo l'ordine nel DB
+		String insertSQL="UPDATE "+TABLE_NAME+" SET NAME=?, DESCRIPTION=?, PRICE=?, QUANTITY=?, CATEGORIA=?, PIATTAFORMA=?" + " WHERE CODE=?";
+		try {
+			connection=ds.getConnection();
+			preparedStatement=connection.prepareStatement(insertSQL);
+			preparedStatement.setString(1, bean.getNome());
+			preparedStatement.setString(2, bean.getDescrizione());
+			preparedStatement.setDouble(3,bean.getPrezzo());
+			preparedStatement.setInt(4,bean.getQuantita());
+			preparedStatement.setString(5, bean.getCategoria());
+			preparedStatement.setString(6, bean.getPiattaforma());
+			preparedStatement.setInt(7, bean.getCodice());
+			preparedStatement.executeUpdate();
+			
+			
+		}
+		finally {
+			try {
+				if(preparedStatement!=null)
+					preparedStatement.close();
+			}finally {
+				if(connection!=null)
+					connection.close();
+			}
+		}
+		
+		//Salvo i prodotti ordinati nel DB
+		
+		
+		return true;
 	}
 	private final static String TABLE_NAME="product";
 	private static DataSource ds;

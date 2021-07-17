@@ -57,11 +57,23 @@ public class ProdottoBean implements Serializable{
 		return nome + " (" + codice + "), " + prezzo + " " + quantita + ". " + descrizione;
 	}
 	
+	public ProdottoBean(int codice, String nome, String descrizione, String piattaforma, String categoria, float prezzo,
+			int quantita) {
+		super();
+		this.codice = codice;
+		this.nome = nome;
+		this.descrizione = descrizione;
+		this.piattaforma = piattaforma;
+		this.categoria = categoria;
+		this.prezzo = prezzo;
+		this.quantita = quantita;
+	}
+
 	int codice;
 	String nome;
 	String descrizione;
 	String piattaforma;
 	String categoria;
-	int prezzo;
+	float prezzo;
 	int quantita;
 }
