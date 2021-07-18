@@ -402,11 +402,13 @@ img {
 .badge.steam{
     background-color: #000;
     background-position: -7px -5px;
+    z-index:100;
 }
 
 .badge.playstation{
     background-color: #004eff;
     background-position: -3px -298px;
+    z-index:100;
 }
 .item .cover img {
     width: 100%;
