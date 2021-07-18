@@ -39,7 +39,7 @@
                     <span class="prezzo">54.99$</span>
                 </a>
             </div>
-            <div class="content main-cat">
+            <div class="content main-cat ombre">
                 <div class="pannello-centrale">
                     <div class="titolo">
                         <div class="categoria">Ultime Uscite</div>
@@ -48,8 +48,8 @@
                     <div class="catalogo">
                         <div class="item">
                             <a class="cover" href="#" title="Battlefield">
-                                <div class="badge"></div>
-                                <img class="picture mainshadow" src="img/bfv_src.png" alt="Battlefield V" onload="lazyLoadImage(this)">
+                                <div class="badge playstation"></div>
+                                <img class="picture ombre" src="img/bfv_src.png" alt="Battlefield V" onload="lazyLoadImage(this)">
                                 <div class="shadow">
                                     <div class="prezzo">69.90$</div>
                                 </div>
@@ -68,8 +68,11 @@
                         <a class="links" href="#">Contatti</a>
                     </div>
                     <div class="copyright">
+                        <div class="payment-container">
+                            <div id="licensa">VGHUB © 2021</div>
+                        </div>
                         <div id="payment-type">
-                            <img src="icon/loghi.png">
+                            <img class="visa" src="icon/visa-logo.png">
                             <div class="payment-paypal">
                             </div>
                         </div>
