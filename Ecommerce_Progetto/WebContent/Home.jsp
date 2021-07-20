@@ -6,10 +6,19 @@
         <link rel="stylesheet" href="stile.css">
     </head>
     <body>
+        <script>
+            function changeCss () {
+            var bodyElement = document.querySelector("body");
+            var sfondo = document.getElementById("background-banner");
+            this.scrollY > 80 ? sfondo.style.position = "fixed" : sfondo.style.position = "absolute";
+            this.scrollY > 80 ? sfondo.style.top = "0px" : sfondo.style.top = "80px";
+        }
+        window.addEventListener("scroll", changeCss , false);
+        </script>
         <a href="#" id="background-banner"></a>
         <div id="header" class="header-container">
             <div class="content navbar">
-                <a id="logo" class="logo" title="VGHUB" href="#HOME">VGHUB</a>
+                <a id="logo" class="logo" title="VGHUB" href="#HOME"></a>
                 <form id="form-ricerca" class="form-ricerca" action="#" method="get" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction" role="search">
                     <meta itemprop="target" content="#">
                     <div id="barra-ricerca">
@@ -17,12 +26,13 @@
                         <input id="barra-ricerca-submit" type="submit" value title="Ricerca">
                     </div>
                 </form>
+                <div class="placer"></div>
                 <div class="menu-container">
                     <div class="menu-main">
                     </div>
-                    <a href="javascript:void(null)" for="menu-dropdown" id="menu-button" class="menu-button" title="Menu Utente">
+                    <a href="javascript:void(0);" for="menu-dropdown" id="menu-button" class="menu-button" title="Menu Utente">
                     </a>
-                    <div class="submenu-container">
+                    <div id="sub" class="submenu-container">
                         <div class="login login-content">
                             <div class="user-submenu"></div>
                             <a href="#loginregister" id="sign-link" style="display: none"></a>
@@ -35,7 +45,7 @@
         <div class="main-container">
             <div id="banner">
                 <a href="#linkgioco">
-                    <img src="img/banner.jfif" alt="BATTLEFIELD 2042">
+                    <img src="img/background-1.jpg" alt="BATTLEFIELD 2042">
                     <span class="prezzo">54.99$</span>
                 </a>
             </div>
@@ -49,7 +59,7 @@
                         <div class="item">
                             <a class="cover" href="#" title="Battlefield">
                                 <div class="badge playstation"></div>
-                                <img class="picture ombre" src="img/bfv_src.png" alt="Battlefield V" onload="lazyLoadImage(this)">
+                                <img class="picture ombre" src="img/battlefield-5-cover.jpg" alt="Battlefield V" onload="lazyLoadImage(this)">
                                 <div class="shadow">
                                     <div class="prezzo">69.90$</div>
                                 </div>
