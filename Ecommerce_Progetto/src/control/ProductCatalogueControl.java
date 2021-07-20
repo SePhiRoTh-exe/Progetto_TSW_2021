@@ -27,7 +27,7 @@ public class ProductCatalogueControl extends HttpServlet {
 		HttpSession session = request.getSession();
 		ProdottoModelDS pds = new ProdottoModelDS();
 		try {
-		if(request.getParameter("catalog")==null) {
+		if(request.getParameter("catalog")!=null) {
 			
 			ArrayList <ProdottoBean> prodotti = new ArrayList<ProdottoBean>(pds.doRetrieveAllProducts());
 			request.setAttribute("prodotti", prodotti);
