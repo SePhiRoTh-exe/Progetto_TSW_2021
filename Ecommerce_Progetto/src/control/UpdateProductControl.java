@@ -24,7 +24,7 @@ ProdottoModelDS pm = new ProdottoModelDS();
  		HttpSession session = request.getSession();
  		try {
  			//solo i manager possono modificare i prodotti
- 			if(session.getAttribute("manager")!=null || session.getAttribute("manager")==null) {
+ 			if(session.getAttribute("manager")!=null ) {
  				//controllo della validità della request
  				if(request.getParameter("action")!=null){
  					//si prendono i parametri dal form
