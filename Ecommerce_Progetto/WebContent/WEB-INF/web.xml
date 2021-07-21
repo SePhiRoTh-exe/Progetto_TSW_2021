@@ -47,6 +47,10 @@
   	<servlet-class>control.PlaceOrderControl</servlet-class>
   </servlet>
   <servlet>
+  	<servlet-name>OrderViewControl</servlet-name>
+  	<servlet-class>control.OrderViewControl</servlet-class>
+  </servlet>
+  <servlet>
   	<servlet-name>UserControl</servlet-name>
   	<servlet-class>control.UserControl</servlet-class>
   </servlet>
@@ -54,6 +58,10 @@
   	<servlet-name>UpdateProductControl</servlet-name>
   	<servlet-class>control.UpdateProductControl</servlet-class>
   </servlet>
+  <servlet-mapping>
+    <servlet-name>OrderViewControl</servlet-name>
+    <url-pattern>/order</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ProductCatalogueControl</servlet-name>
     <url-pattern>/catalogo</url-pattern>

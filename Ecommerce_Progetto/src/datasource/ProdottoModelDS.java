@@ -16,6 +16,7 @@ import javax.sql.DataSource;
 
 import model.Carrello;
 import model.ProdottoBean;
+import model.ProdottoOrdineBean;
 import model.UserBean;
 
 public class ProdottoModelDS implements ProdottoModel{
@@ -203,10 +204,10 @@ public class ProdottoModelDS implements ProdottoModel{
 	
 	
 	//Metodo per restiturire i prodotti di un ordine
-	public synchronized static ArrayList<ProdottoBean> doRetrieveById(long id) throws SQLException{
+	public synchronized static ArrayList<ProdottoOrdineBean> doRetrieveById(long id) throws SQLException{
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
-		ArrayList<ProdottoBean> prodotti=new ArrayList<ProdottoBean>();
+		ArrayList<ProdottoOrdineBean> prodotti=new ArrayList<ProdottoOrdineBean>();
 		String selectSQL="select * from storage.order, product, product_order where order.idOrdine = '"+id+"'\r\n"
 				+ "and product_order.idOrdine= order.idOrdine\r\n"
 				+ "and product.Code= product_order.Code";
@@ -218,14 +219,12 @@ public class ProdottoModelDS implements ProdottoModel{
 			ResultSet rs=preparedStatement.executeQuery();
 			//Scorro tutto result e creo un bean per ogni prodotto e lo aggiungo ai prodotti
 			while(rs.next()) {
-				ProdottoBean bean=new ProdottoBean();
+				ProdottoOrdineBean bean=new ProdottoOrdineBean();
 				bean.setCodice(rs.getInt("CODE"));
-				bean.setNome(rs.getString("NAME"));
-				bean.setDescrizione(rs.getString("DESCRIPTION"));
+				
 				bean.setPrezzo(rs.getInt("PREZZO"));
 				bean.setQuantita(rs.getInt("QUANTITA"));
-				bean.setCategoria(rs.getString("CATEGORIA"));
-				bean.setPiattaforma(rs.getString("PIATTAFORMA"));
+				
 				prodotti.add(bean);
 			}
 		}finally {//chiudo statement e connessione se aperte

@@ -10,10 +10,10 @@ public class Ordine {
 	private float totale;
 	private String stato;
 	private UserBean utente;
-	private ArrayList<ProdottoBean> prodotti;
+	private ArrayList<ProdottoOrdineBean> prodotti;
 
 	public Ordine(long numeroOrdine, float totale, String stato, UserBean utente,
-			ArrayList<ProdottoBean> prodotti) {
+			ArrayList<ProdottoOrdineBean> prodotti) {
 		
 		this.numeroOrdine = numeroOrdine;
 		this.totale = totale;
@@ -54,11 +54,11 @@ public class Ordine {
 		this.utente = utente;
 	}
 
-	public ArrayList<ProdottoBean> getProdotti() {
+	public ArrayList<ProdottoOrdineBean> getProdotti() {
 		return prodotti;
 	}
 
-	public void setProdotti(ArrayList<ProdottoBean> prodotti) {
+	public void setProdotti(ArrayList<ProdottoOrdineBean> prodotti) {
 		this.prodotti = prodotti;
 	}
 	

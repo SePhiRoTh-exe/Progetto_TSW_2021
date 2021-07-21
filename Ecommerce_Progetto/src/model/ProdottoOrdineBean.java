@@ -1,5 +1,9 @@
 package model;
 
+import java.sql.SQLException;
+
+import datasource.ProdottoModelDS;
+
 public class ProdottoOrdineBean {
 	public ProdottoOrdineBean() {}
 	
@@ -26,6 +30,11 @@ public class ProdottoOrdineBean {
 	}
 	public int getCodice() {
 		return codiceProdotto;
+	}
+	public ProdottoBean getProdotto() throws SQLException {
+		ProdottoModelDS prod = new ProdottoModelDS();
+		ProdottoBean bean = prod.doRetrieveByKey(codiceProdotto);
+		return bean;
 	}
 	public void setID(long idOrdine) {
 		this.idOrdine=idOrdine;

@@ -19,6 +19,9 @@
 <title>VGHUB</title>
 </head>
 <body>
+ <tbody>
+<tr>
+    <td>
 <div class="section padding-inner">
 	    	<div class="container">
 				<div class="row">
@@ -105,5 +108,9 @@
                 </center>
                 </tr>
                 </tbody>
+                
+                
+             
+              
 </body>
 </html>
