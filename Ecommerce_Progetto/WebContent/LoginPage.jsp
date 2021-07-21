@@ -18,6 +18,11 @@
 	</head>
 	<body>
 		<%@ include file="../section/navbar.jsp" %>
+		<div class="container h-100">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+				<br><br>
+				<div class="d-flex justify-content-center form_container">
 		<form action="login" method="get">
 			<div class="input-group mb-3">
 							<div class="input-group-append">
@@ -45,7 +50,8 @@
 					<div class="d-flex justify-content-center mt-3 login_container">
 				  <button type="submit" class="btn login_btn">Login</button>
 				  </div>
-		</form>
+				</form>
+				</div>
 		<div class="mt-4">
 					<div class="d-flex justify-content-center links">
 						Non hai un account? <a href="RegisterPage.jsp" class="ml-2">Registrati ora!</a>
