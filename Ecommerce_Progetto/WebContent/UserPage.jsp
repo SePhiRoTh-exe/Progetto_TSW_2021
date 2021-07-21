@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*,model.*"%>
     <% UserBean user=(UserBean) request.getSession().getAttribute("utente");
     	if(user==null)
     	{
@@ -15,11 +15,35 @@
 		<title>Ecommerce</title>
 	</head>
 <body>
-<%@ include file="../section/navbar.jsp" %>
-	<h1>Ciao <%=user.getNome() %></h1>
-	<h2><a>Dettagli Account</a></h2>
-	<h2><a href="visualizzaOrdini">Elenco Ordini</a></h2><br>
-	<h2><a href="logout">Disconnetti</a></h2><br>
-	<h2><a href="#">Info Account</a></h2>
+<%@ include file="/section/navbar.jsp" %>
+<br><br>
+		
+		<%if(session.getAttribute("alertMsg")!=null){%>
+		<h3><font color="red"><%=session.getAttribute("alertMsg")%></font></h3> 
+		<%session.setAttribute("alertMsg",""); 
+		session.setAttribute("redirect","UserArea.jsp");%><br>
+	<%}%>
+	
+	<div class="container">
+      <div class="row padding-inner"> 
+             
+             <!-- Column1 -->
+             <div class="col-md-6 col-sm-12">
+             	
+                  
+                  <p class="block">Le tue informazioni</p>
+                  
+                  <div class="thumbnail">
+                  <p><b>Username:</b> <%=user.getUsername() %></p>
+                  <p><b>Nome:</b> <%=user.getNome() %></p>
+				  <p><b>Cognome:</b> <%=user.getCognome() %></p>
+				  <p><b>Email:</b> <%=user.getEmail() %></p>    
+                 
+            	 </div>
+            	 <div >
+						 <a href="OrderPage.jsp">Ordini effettuati</a>
+						
+					</div>
+            </div>
 </body>
 </html>

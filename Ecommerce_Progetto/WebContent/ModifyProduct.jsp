@@ -13,6 +13,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+		<script src="./scripts/ValidateModifyProduct.js"></script>
         <link href='http://fonts.googleapis.com/css?family=Open%20Sans:400,700,600' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Josefin+Sans:400,600,700' rel='stylesheet' type='text/css'> 
 <meta charset="ISO-8859-1">
@@ -108,7 +109,7 @@
                 </center>
                 </tr>
                 </tbody>
-                
+                 <script src="js/JQuery1-11-0.js"></script>
                 
              
               
