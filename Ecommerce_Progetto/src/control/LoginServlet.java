@@ -25,24 +25,29 @@ public class LoginServlet extends HttpServlet{
 			UserBean user=new UserBean();
 			user.setUsername(request.getParameter("Username"));
 			user.setPassword(request.getParameter("Password"));
+			System.out.println(user.getUsername());
+			System.out.println(user.getPassword());
 			user=UserModelDS.doRetrieve(user);
-			if(user.isValid())
-			{
-				if(user.isAdmin())
+			System.out.println(user.getCognome());
+			if(user.isValid()) {
+				if(user.isAdmin()) 
 					session.setAttribute("manager", user);
 				else
 					session.setAttribute("utente", user);
-				response.sendRedirect("Home.jsp");
+				response.sendRedirect("./Home.jsp");
 			}
+			
+			
+		
 			else
 			{
-				response.sendRedirect("LoginPage.jsp");
+				response.sendRedirect("./LoginPage.jsp");
 			}
 		}
 		catch(Throwable e)
 		{
 			session.setAttribute("alertMsg","Errore, ritorno alla Homepage");
-			response.sendRedirect("./HomePage.jsp");	
+			response.sendRedirect("./Home.jsp");	
 		}
 	}
 	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{

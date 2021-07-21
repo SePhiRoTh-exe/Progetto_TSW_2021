@@ -50,9 +50,17 @@
   	<servlet-name>UserControl</servlet-name>
   	<servlet-class>control.UserControl</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>UpdateProductControl</servlet-name>
+  	<servlet-class>control.UpdateProductControl</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>ProductCatalogueControl</servlet-name>
     <url-pattern>/catalogo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateProductControl</servlet-name>
+    <url-pattern>/updateproduct</url-pattern>
   </servlet-mapping>
     <servlet-mapping>
   	<servlet-name>ProductViewControl</servlet-name>

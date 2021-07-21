@@ -41,8 +41,9 @@ public class RegisterControl extends HttpServlet {
 			}
 			
 			catch(Exception e) {
+				e.printStackTrace();
 				session.setAttribute("alertMsg","Errore, ritorno alla Homepage");
-				response.sendRedirect("./HomePage.jsp");	
+				response.sendRedirect("./Home.jsp");	
 			}
 			
 		}

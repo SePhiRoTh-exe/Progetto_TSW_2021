@@ -26,12 +26,13 @@ public class ProductCatalogueControl extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		ProdottoModelDS pds = new ProdottoModelDS();
+		
 		try {
 		if(request.getParameter("catalog")!=null) {
 			
 			ArrayList <ProdottoBean> prodotti = new ArrayList<ProdottoBean>(pds.doRetrieveAllProducts());
 			request.setAttribute("prodotti", prodotti);
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Home.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminPage.jsp");
 			dispatcher.forward(request, response);
 			
 		}
@@ -58,7 +59,7 @@ public class ProductCatalogueControl extends HttpServlet {
 		}
 		catch (SQLException e) {
 			session.setAttribute("alertMsg","Errore, ritorno alla Homepage");
-			response.sendRedirect("./HomePage.jsp");	
+			response.sendRedirect("./Home.jsp");	
 		} 
 	}
 }

@@ -1,4 +1,6 @@
 <%
+	if(request.getAttribute("manager")!=null)
+		response.sendRedirect("AdminPage.jsp");
 	Collection<?> prodotti = (Collection<?>) request.getAttribute("prodotti");
 	if(prodotti == null) {
 		response.sendRedirect("./catalogo?catalog=1");	

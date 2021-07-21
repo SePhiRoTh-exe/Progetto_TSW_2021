@@ -19,32 +19,33 @@
 					<h1>Registrazione</h1>
 					<label>
 						<label for="inputNome4">Username</label>
-      					<input type="text" class="form-control" id="inputUsr4" placeholder="Inserisci Username" required name="userName">
+      					<input type="text" class="form-control" id="inputUsr4" placeholder="Inserisci Username" required name="Username">
    	  					<span id="spanusername" style="display:none; font-family: 'Josefin Sans', sans-serif;"><i class="fa fa-info-circle" aria-hidden="true"></i> Inserisci un nome valido (solo caratteri). </span>
 					</label>
 					 <div class="form-row">
     				<div class="form-group col-md-5">
       					<label for="inputNome4">Nome</label>
-      					<input type="text" class="form-control" id="inputNome4" placeholder="Inserisci nome" required name="userName">
+      					<input type="text" class="form-control" id="inputNome4" placeholder="Inserisci nome" required name="Nome">
    	  					<span id="spannome" style="display:none; font-family: 'Josefin Sans', sans-serif;"><i class="fa fa-info-circle" aria-hidden="true"></i> Inserisci un nome valido (solo caratteri). </span>
     				</div>
     				<div class="form-group col-md-5">
       					<label for="inputSurname4">Cognome</label>
-      					<input type="text" class="form-control" id="inputSurname4" placeholder="Inserisci cognome" required name="userSurname">
+      					<input type="text" class="form-control" id="inputSurname4" placeholder="Inserisci cognome" required name="Cognome">
      					<span id="spancognome" style="display:none ; font-family: 'Josefin Sans', sans-serif;"><i class="fa fa-info-circle" aria-hidden="true"></i> Inserisci un cognome valido (solo caratteri). </span>
      				 </div>
     				<div class="form-group col-md-5">
       					<label for="inputEmail4">Email</label>
-      					<input type="email" class="form-control" id="inputEmail4" placeholder="Email" required name="userEmail">
+      					<input type="email" class="form-control" id="inputEmail4" placeholder="Email" required name="Email">
      					 <span id="spanmail" style="display:none; font-family: 'Josefin Sans', sans-serif;"><i class="fa fa-info-circle" aria-hidden="true"></i> Inserisci una mail valida (usa la @). </span>
     				</div>
     				<div class="form-group col-md-5">
       					<label for="inputPassword4">Password</label>
-      					<input type="password" class="form-control" id="inputPassword4" placeholder="Password" required name="userPass">
+      					<input type="password" class="form-control" id="inputPassword4" placeholder="Password" required name="Password">
       					<span id="spanpassword" style="display:none; font-family: 'Josefin Sans', sans-serif;"><i class="fa fa-info-circle" aria-hidden="true"></i> Inserisci una password valida (fra 6 e 18 caratteri, almeno una maiuscola, una minuscola e un numero). </span>
     				</div>    
     				</div>
 		<input type="submit" name="registrazione" value="Registrati">
+		<label>Hai già un account? Effettua il <a href="LoginPage.jsp">Login</a></label>
 	</form>
 	<script src="js/validazione.js"></script>
 </body>

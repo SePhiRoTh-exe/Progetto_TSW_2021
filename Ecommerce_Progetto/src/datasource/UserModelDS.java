@@ -27,24 +27,26 @@ public class UserModelDS {
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
 		PasswordCrypt crypt=new PasswordCrypt();
+		System.out.println(bean.getUsername());
 		String username=bean.getUsername();
-		String password=crypt.encrypt(bean.getPassword());
-		String selectSQL="SELECT * FROM "+TABLE_NAME+" WHERE USERNAME='"+username+"' AND PASSWORD='"+password+"'";
+		//String password=crypt.encrypt(bean.getPassword());
+		String selectSQL="SELECT * FROM STORAGE."+TABLE_NAME+" WHERE USERNAME='"+username+"' AND PASSWORD='"+bean.getPassword()+"'";
 		try {
 			connection=ds.getConnection();
 			preparedStatement=connection.prepareStatement(selectSQL);
 			rs=preparedStatement.executeQuery(selectSQL);
 			boolean exist=rs.next();
 			
-			if(!exist) bean.setValid(false);
-			else
-			{
+			if(!exist)
+				bean.setValid(false);
+			else {
 				bean.setNome(rs.getString("Nome"));
 				bean.setCognome(rs.getString("Cognome"));
 				bean.setEmail(rs.getString("Email"));
 				bean.setAdmin(rs.getBoolean("Admin"));
-				bean.setValid(true);
+				bean.setValid(exist);
 			}
+				
 		}
 		catch(Exception e)
 		{

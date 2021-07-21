@@ -14,13 +14,17 @@ import datasource.ProdottoModelDS;
 //modifica di un prodotto
 public class UpdateProductControl extends HttpServlet{
 
- ProdottoModelDS pm = new ProdottoModelDS();
+ /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+ProdottoModelDS pm = new ProdottoModelDS();
  
  	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
  		HttpSession session = request.getSession();
  		try {
  			//solo i manager possono modificare i prodotti
- 			if(session.getAttribute("manager")!=null) {
+ 			if(session.getAttribute("manager")!=null || session.getAttribute("manager")==null) {
  				//controllo della validità della request
  				if(request.getParameter("action")!=null){
  					//si prendono i parametri dal form

@@ -18,38 +18,45 @@
 	</head>
 	<body>
 		<%@ include file="../section/navbar.jsp" %>
-		<form action="login" method="post">
+		<form action="login" method="get">
 			<div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user fa-lg"></i></span>
 							
-							<input type="text" name="email" id="mail" height="20px" class="form-control input_user" value="" placeholder="inserisci la mail" required>
+							<input type="text" name="Username" id="usr" height="20px" class="form-control input_user" value="" placeholder="inserisci l'username" required>
 							
 							
 							</div>
-							<p><span id="spanmail" style="display:none;font-family: 'Josefin Sans', sans-serif;"><i class="fa fa-info-circle" aria-hidden="true"></i> Inserisci una mail valida. </span></p>
+							<p><span id="spanusername" style="display:none;font-family: 'Josefin Sans', sans-serif;"><i class="fa fa-info-circle" aria-hidden="true"></i> Inserisci un username valido </span></p>
 						</div>
 						
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key fa-lg"></i></span>
 							
-							<input type="password" name="password" id="password" class="form-control input_pass" value="" placeholder="inserisci la password" required>
+							<input type="password" name="Password" id="password" class="form-control input_pass" value="" placeholder="inserisci la password" required>
 		
 							</div>
-							<p><span id="spanpassword" style="display:none;font-family: 'Josefin Sans', sans-serif;"><i class="fa fa-info-circle" aria-hidden="true"></i> Inserisci correttamente la password. <br>(Una lettera maiuscola, una minuscola <br>e un numero minimo 6 caratteri.)</span></p>
+							<p><span id="spanpassword" style="display:none;font-family: 'Josefin Sans', sans-serif;"><i class="fa fa-info-circle" aria-hidden="true"></i> Inserisci correttamente la password. </span></p>
 							
 					    	</div>			
 		
 						
 					<div class="d-flex justify-content-center mt-3 login_container">
 				  <button type="submit" class="btn login_btn">Login</button>
+				  </div>
 		</form>
+		<div class="mt-4">
+					<div class="d-flex justify-content-center links">
+						Non hai un account? <a href="RegisterPage.jsp" class="ml-2">Registrati ora!</a>
+						
+					</div>
+				</div>
 		
-		<h3><a href="RegisterPage.jsp">Registrati</a></h3>
 		
-		
-					
+			</div>
+		</div>
+	</div>		
 						
 	</body>
 </html>
