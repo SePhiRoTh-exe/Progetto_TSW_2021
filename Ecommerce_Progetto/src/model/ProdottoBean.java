@@ -19,7 +19,7 @@ public class ProdottoBean implements Serializable{
 	public float getPrezzo() {
 		return prezzo;
 	}
-	public void setPrezzo(int prezzo) {
+	public void setPrezzo(float prezzo) {
 		this.prezzo=prezzo;
 	}
 	public int getQuantita() {

@@ -613,6 +613,11 @@ img {
     background-position: -3px -298px;
     z-index: 100;
 }
+
+.badge.xbox{
+	background-color: #57a32b;
+    background-position: -3px -330px;
+}
 .item .cover img {
     width: 100%;
     border-radius: 8px;

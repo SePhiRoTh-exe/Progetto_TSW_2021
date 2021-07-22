@@ -1,7 +1,6 @@
 package datasource;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,10 +13,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import model.Carrello;
 import model.ProdottoBean;
 import model.ProdottoOrdineBean;
-import model.UserBean;
 
 public class ProdottoModelDS implements ProdottoModel{
 	static {
@@ -44,7 +41,7 @@ public class ProdottoModelDS implements ProdottoModel{
 				bean.setCodice(rs.getInt("CODE"));
 				bean.setNome(rs.getString("NAME"));
 				bean.setDescrizione(rs.getString("DESCRIPTION"));
-				bean.setPrezzo(rs.getInt("PRICE"));
+				bean.setPrezzo(rs.getFloat("PRICE"));
 				bean.setQuantita(rs.getInt("QUANTITY"));
 				bean.setCategoria(rs.getString("CATEGORIA"));
 				bean.setPiattaforma(rs.getString("PIATTAFORMA"));
@@ -76,7 +73,7 @@ public class ProdottoModelDS implements ProdottoModel{
 				bean.setCodice(rs.getInt("CODE"));
 				bean.setNome(rs.getString("NAME"));
 				bean.setDescrizione(rs.getString("DESCRIPTION"));
-				bean.setPrezzo(rs.getInt("PRICE"));
+				bean.setPrezzo(rs.getFloat("PRICE"));
 				bean.setQuantita(rs.getInt("QUANTITY"));
 				bean.setCategoria(rs.getString("CATEGORIA"));
 				bean.setPiattaforma(rs.getString("PIATTAFORMA"));
@@ -115,7 +112,7 @@ public class ProdottoModelDS implements ProdottoModel{
 				bean.setCodice(rs.getInt("CODE"));
 				bean.setNome(rs.getString("NAME"));
 				bean.setDescrizione(rs.getString("DESCRIPTION"));
-				bean.setPrezzo(rs.getInt("PRICE"));
+				bean.setPrezzo(rs.getFloat("PRICE"));
 				bean.setQuantita(rs.getInt("QUANTITY"));
 				bean.setCategoria(rs.getString("CATEGORIA"));
 				bean.setPiattaforma(rs.getString("PIATTAFORMA"));
@@ -148,7 +145,7 @@ public class ProdottoModelDS implements ProdottoModel{
 				bean.setCodice(rs.getInt("CODE"));
 				bean.setNome(rs.getString("NAME"));
 				bean.setDescrizione(rs.getString("DESCRIPTION"));
-				bean.setPrezzo(rs.getInt("PRICE"));
+				bean.setPrezzo(rs.getFloat("PRICE"));
 				bean.setQuantita(rs.getInt("QUANTITY"));
 				bean.setCategoria(rs.getString("CATEGORIA"));
 				bean.setPiattaforma(rs.getString("PIATTAFORMA"));
@@ -184,7 +181,7 @@ public class ProdottoModelDS implements ProdottoModel{
 				bean.setCodice(rs.getInt("CODE"));
 				bean.setNome(rs.getString("NAME"));
 				bean.setDescrizione(rs.getString("DESCRIPTION"));
-				bean.setPrezzo(rs.getInt("PRICE"));
+				bean.setPrezzo(rs.getFloat("PRICE"));
 				bean.setQuantita(rs.getInt("QUANTITY"));
 				bean.setCategoria(rs.getString("CATEGORIA"));
 				bean.setPiattaforma(rs.getString("PIATTAFORMA"));
@@ -215,7 +212,6 @@ public class ProdottoModelDS implements ProdottoModel{
 			//Mi connetto al database e passo la select
 			connection=ds.getConnection();
 			preparedStatement=connection.prepareStatement(selectSQL);
-			int giacomo = 1;
 			//Nel result saranno contenuti tutti i prodotti acquistati con uno specifico ordine
 			ResultSet rs=preparedStatement.executeQuery();
 			//Scorro tutto result e creo un bean per ogni prodotto e lo aggiungo ai prodotti
@@ -223,7 +219,7 @@ public class ProdottoModelDS implements ProdottoModel{
 				ProdottoOrdineBean bean=new ProdottoOrdineBean();
 				bean.setCodice(rs.getInt("CODE"));
 				
-				bean.setPrezzo(rs.getInt("PREZZO"));
+				bean.setPrezzo(rs.getFloat("PREZZO"));
 				bean.setQuantita(rs.getInt("QUANTITA"));
 				
 				prodotti.add(bean);
