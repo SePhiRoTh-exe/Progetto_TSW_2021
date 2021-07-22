@@ -29,8 +29,8 @@ public class UserModelDS {
 		PasswordCrypt crypt=new PasswordCrypt();
 		System.out.println(bean.getUsername());
 		String username=bean.getUsername();
-		//String password=crypt.encrypt(bean.getPassword());
-		String selectSQL="SELECT * FROM STORAGE."+TABLE_NAME+" WHERE USERNAME='"+username+"' AND PASSWORD='"+bean.getPassword()+"'";
+		String password=crypt.encrypt(bean.getPassword());
+		String selectSQL="SELECT * FROM STORAGE."+TABLE_NAME+" WHERE USERNAME='"+username+"' AND PASSWORD='"+password+"'";
 		try {
 			connection=ds.getConnection();
 			preparedStatement=connection.prepareStatement(selectSQL);

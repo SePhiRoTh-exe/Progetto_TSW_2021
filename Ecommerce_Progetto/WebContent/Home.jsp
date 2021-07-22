@@ -49,8 +49,8 @@
 					%>
                         <div class="item">
                             <a class="cover" href="prodotto?idProd=<%=prodotto.getCodice() %>" title="Battlefield">
-                                <div class="badge playstation"></div>
-                                <img class="picture ombre" src="img/battlefield-5-cover.jpg" alt="Battlefield V" onload="lazyLoadImage(this)">
+                                <div class="badge <%=prodotto.getPiattaforma() %>"></div>
+                                <img class="picture ombre" src="img/<%=prodotto.getImg()%>-cover.jpg" alt="Battlefield V" onload="lazyLoadImage(this)">
                                 <div class="shadow">
                                     <div class="prezzo"><%=prodotto.getPrezzo()%>$</div>
                                 </div>

@@ -56,7 +56,11 @@ public class ProdottoBean implements Serializable{
 	public String toString() {
 		return nome + " (" + codice + "), " + prezzo + " " + quantita + ". " + descrizione;
 	}
-	
+	public String getImg()
+	{
+		String nome=this.nome.replaceAll(" ", "-").toLowerCase();
+		return nome;
+	}
 	public ProdottoBean(int codice, String nome, String descrizione, String piattaforma, String categoria, float prezzo,
 			int quantita) {
 		super();
