@@ -32,14 +32,11 @@ public class ProductCatalogueControl extends HttpServlet {
 			
 			ArrayList <ProdottoBean> prodotti = new ArrayList<ProdottoBean>(pds.doRetrieveAllProducts());
 			request.setAttribute("prodotti", prodotti);
-			if(session.getAttribute("manager")!=null) {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminPage.jsp");
-			dispatcher.forward(request, response);
-			}
-			else {
+			
+			
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Home.jsp");
 				dispatcher.forward(request, response);
-			}
+			
 			
 		}
 		else {
