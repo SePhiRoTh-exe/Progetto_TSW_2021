@@ -215,6 +215,7 @@ public class ProdottoModelDS implements ProdottoModel{
 			//Mi connetto al database e passo la select
 			connection=ds.getConnection();
 			preparedStatement=connection.prepareStatement(selectSQL);
+			int giacomo = 1;
 			//Nel result saranno contenuti tutti i prodotti acquistati con uno specifico ordine
 			ResultSet rs=preparedStatement.executeQuery();
 			//Scorro tutto result e creo un bean per ogni prodotto e lo aggiungo ai prodotti
