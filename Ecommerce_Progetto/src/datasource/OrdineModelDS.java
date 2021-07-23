@@ -31,11 +31,12 @@ public class OrdineModelDS {
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
 		ArrayList<Ordine> listaOrdini=new ArrayList<Ordine>();
-		UserBean user=UserModelDS.doRetrieve(email);
+		UserBean user=us.doRetrieve(email);
 		String selectSQL="SELECT * FROM STORAGE."+OrdineModelDS.TABLE_NAME+" WHERE EMAIL = '"+email+"'";
 		try {
 			connection=ds.getConnection();
 			preparedStatement=connection.prepareStatement(selectSQL);
+			
 			ResultSet rs=preparedStatement.executeQuery();
 			while(rs.next()) {
 				listaOrdini.add(new Ordine(rs.getLong("IDORDINE"),rs.getFloat("TOTALE"),rs.getString("STATO"),user,ProdottoModelDS.doRetrieveById(rs.getLong("IDORDINE"))));
@@ -52,20 +53,26 @@ public class OrdineModelDS {
 		}
 		return listaOrdini;
 	}
-	public static synchronized Ordine doRetrieveById(Long id) throws SQLException{
+	public static synchronized Ordine doRetrieveById(int id) throws SQLException{
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
 		Ordine ordFound = null;
 		
-		String selectSQL="SELECT * FROM "+OrdineModelDS.TABLE_NAME+" WHERE ID ='"+id+"'";
+		String selectSQL="SELECT * FROM storage."+OrdineModelDS.TABLE_NAME+" WHERE IDORDINE = "+id+"";
 		try {
 			connection=ds.getConnection();
+			
 			preparedStatement=connection.prepareStatement(selectSQL);
+			
 			ResultSet rs=preparedStatement.executeQuery();
-			UserBean user=UserModelDS.doRetrieve(rs.getString("EMAIL"));
+			
+			
+			
 			while(rs.next()) {
-				ordFound = new Ordine(rs.getLong("IDORDINE"),rs.getFloat("TOTALE"),rs.getString("STATO"),user,ProdottoModelDS.doRetrieveById(rs.getLong("IDORDINE")));
+				
+				ordFound = new Ordine(rs.getLong("IDORDINE"),rs.getFloat("TOTALE"),rs.getString("STATO"),us.doRetrieve(rs.getString("EMAIL")),ProdottoModelDS.doRetrieveById(rs.getLong("IDORDINE")));
 			}
+			
 		}
 		finally {
 			try {
@@ -127,4 +134,5 @@ public class OrdineModelDS {
 	}
 	private final static String TABLE_NAME="order";
 	private static DataSource ds;
+	private static UserModelDS us;
 }

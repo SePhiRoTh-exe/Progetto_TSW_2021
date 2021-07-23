@@ -20,16 +20,16 @@ public class Carrello {
 		ProdottoBean p=productds.doRetrieveByKey(idProd);
 		
 		for(ProdottoCarrello pr: prodotti) {
-			if(pr.getProduct().getCodice()==p.getCodice() && pr.getProduct().getQuantita()+1 < p.getQuantita())
+			if(pr.getProduct().getCodice()==p.getCodice() && pr.getQuantità()+1 < p.getQuantita())
 			{
 				pr.setQuantità(pr.getQuantità()+1);
-				this.getTotale();
+				this.setTotale();
 				return true;
 			}
 		}
 		ProdottoCarrello product = new ProdottoCarrello(p,1);
 		prodotti.add(product);
-		this.getTotale();
+		this.setTotale();
 		return true;
 	}
 	public boolean modQuantità(int idProd, int quantita) {
@@ -45,7 +45,7 @@ public class Carrello {
 			if(prodotti.get(pos).getQuantità()==0) {
 				this.deleteProdotto(p.getCodice());
 			}
-			this.getTotale();
+			this.setTotale();
 			return true;
 			
 			
@@ -72,7 +72,7 @@ public class Carrello {
 			if(pr.getProduct().getCodice()==idProd)
 			{
 				prodotti.remove(pr);
-				this.getTotale();
+				this.setTotale();
 				break;
 			}
 		}
@@ -92,7 +92,10 @@ public class Carrello {
 		}
 		return false;
 	}
-	public void getTotale() {
+	public float getTotale() {
+		return this.totale;
+	}
+	public void setTotale() {
 		float prezzo=0;
 		for (ProdottoCarrello pr: prodotti) {
 			prezzo+=pr.getProduct().getPrezzo()*pr.getQuantità();

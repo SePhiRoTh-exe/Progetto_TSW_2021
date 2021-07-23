@@ -45,6 +45,7 @@ public class ProdottoModelDS implements ProdottoModel{
 				bean.setQuantita(rs.getInt("QUANTITY"));
 				bean.setCategoria(rs.getString("CATEGORIA"));
 				bean.setPiattaforma(rs.getString("PIATTAFORMA"));
+				//si va avanti
 			}
 		}finally {
 			try {
@@ -135,11 +136,10 @@ public class ProdottoModelDS implements ProdottoModel{
 		PreparedStatement preparedStatement=null;
 		Collection<ProdottoBean> prodotti=new ArrayList<ProdottoBean>();
 		ProdottoBean bean=new ProdottoBean();
-		String selectSQL="SELECT * FROM "+ProdottoModelDS.TABLE_NAME+" WHERE NAME = ?";
+		String selectSQL="SELECT * FROM "+ProdottoModelDS.TABLE_NAME+" WHERE NAME LIKE '"+nome+"%'";
 		try {
 			connection=ds.getConnection();
 			preparedStatement=connection.prepareStatement(selectSQL);
-			preparedStatement.setString(2, nome);
 			ResultSet rs=preparedStatement.executeQuery();
 			while(rs.next()) {
 				bean.setCodice(rs.getInt("CODE"));

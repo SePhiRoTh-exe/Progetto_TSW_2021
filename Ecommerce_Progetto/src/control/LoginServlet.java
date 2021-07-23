@@ -4,11 +4,12 @@ package control;
 import java.io.IOException;
 
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import datasource.UserModelDS;
 import model.UserBean;
@@ -25,10 +26,7 @@ public class LoginServlet extends HttpServlet{
 			UserBean user=new UserBean();
 			user.setUsername(request.getParameter("Username"));
 			user.setPassword(request.getParameter("Password"));
-			System.out.println(user.getUsername());
-			System.out.println(user.getPassword());
 			user=UserModelDS.doRetrieve(user);
-			System.out.println(user.getCognome());
 			if(user.isValid()) {
 				if(user.isAdmin()) 
 					session.setAttribute("manager", user);

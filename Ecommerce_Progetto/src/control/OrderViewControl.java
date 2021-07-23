@@ -5,11 +5,12 @@ import java.io.IOException;
 
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import datasource.OrdineModelDS;
 import model.UserBean;
@@ -34,7 +35,7 @@ public class OrderViewControl extends HttpServlet{
 					response.sendRedirect("./Home.jsp");
 				}else {
 					//viene preso l'ordine, ma se il valore nella request non corrisponde ad un ordine esistente nel database, errore
-					long idOrd=Long.parseLong(request.getParameter("idOrd"));
+					int idOrd=Integer.parseInt(request.getParameter("idOrd"));
 					Ordine ordine = ord.doRetrieveById(idOrd);
 					if(ordine==null) {
 						session.setAttribute("alertMsg", "Richiesta non valida");
@@ -62,6 +63,7 @@ public class OrderViewControl extends HttpServlet{
 			}
 		}catch(Exception e2) {
 			
+			e2.printStackTrace();
 			session.setAttribute("alertMsg","Errore, ritorno alla Homepage");
 			response.sendRedirect("./Home.jsp");	
 			}

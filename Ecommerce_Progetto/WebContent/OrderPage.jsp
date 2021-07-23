@@ -5,7 +5,7 @@
     	{
     		response.sendRedirect("LoginPage.jsp");
     	}
-    	ArrayList<Ordine> prodottiOrdinati=(ArrayList<Ordine>) request.getSession().getAttribute("ordini");%>
+    	ArrayList<?> prodottiOrdinati=(ArrayList<?>) request.getSession().getAttribute("ordini");%>
 <!DOCTYPE html>
 <html>
 
@@ -18,15 +18,15 @@
 	<%@ include file="../section/navbar.jsp" %>
 	<%if(prodottiOrdinati!=null && prodottiOrdinati.size()!=0) { 
 	
-		
-		for(Ordine o : prodottiOrdinati){
-			
+		Iterator<?> it = prodottiOrdinati.iterator();
+		while(it.hasNext()){
+			Ordine ordine=(Ordine) it.next();
 			%>
-			<p><b>Numero dell'ordine:</b> <%=o.getNumeroOrdine() %></p>
+			<p><b>Numero dell'ordine:</b> <%=ordine.getNumeroOrdine() %></p>
 				  
-				  <p><b>Stato:</b> <%=o.getStato() %></p>
+				  <p><b>Stato:</b> <%=ordine.getStato() %></p>
 				  <br>
-				  <a href="userorderviewcontrol?idOrd=<%=o.getNumeroOrdine()%>"><button class="button">Mostra dettagli</button></a>
+				  <a href="order?idOrd=<%=ordine.getNumeroOrdine()%>"><button class="button">Mostra dettagli</button></a>
 				  <br><br>
 		
 		<%}} else{%>

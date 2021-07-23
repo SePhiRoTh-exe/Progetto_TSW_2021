@@ -1,109 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-		  <display-name>Storage</display-name>
-  <welcome-file-list>
-    <welcome-file>ProductView.jsp</welcome-file>
-  </welcome-file-list>
-  <resource-ref>
-    <description>JNDI reference to a data source</description>
-    <res-ref-name>jdbc/storage</res-ref-name>
-    <res-type>javax.sql.DataSource</res-type>
-    <res-auth>Container</res-auth>
-  </resource-ref>
-  <servlet>
-    <servlet-name>ProductCatalogueControl</servlet-name>
-    <servlet-class>control.ProductCatalogueControl</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>ProductViewControl</servlet-name>
-    <servlet-class>control.ProductViewControl</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>AddToCartControl</servlet-name>
-    <servlet-class>control.AddToCartControl</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>RemoveFromCartControl</servlet-name>
-    <servlet-class>control.RemoveFromCartControl</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>LoginServlet</servlet-name>
-  	<servlet-class>control.LoginServlet</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>RegisterControl</servlet-name>
-  	<servlet-class>control.RegisterControl</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>LogoutControl</servlet-name>
-  	<servlet-class>control.LogoutControl</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>UserOrderSearchControl</servlet-name>
-  	<servlet-class>control.UserOrderSearchControl</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>PlaceOrderControl</servlet-name>
-  	<servlet-class>control.PlaceOrderControl</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>OrderViewControl</servlet-name>
-  	<servlet-class>control.OrderViewControl</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>UserControl</servlet-name>
-  	<servlet-class>control.UserControl</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>UpdateProductControl</servlet-name>
-  	<servlet-class>control.UpdateProductControl</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>OrderViewControl</servlet-name>
-    <url-pattern>/order</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ProductCatalogueControl</servlet-name>
-    <url-pattern>/catalogo</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>UpdateProductControl</servlet-name>
-    <url-pattern>/updateproduct</url-pattern>
-  </servlet-mapping>
-    <servlet-mapping>
-  	<servlet-name>ProductViewControl</servlet-name>
-  	<url-pattern>/prodotto</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>AddToCartControl</servlet-name>
-  	<url-pattern>/addCarrello</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>RemoveFromCartControl</servlet-name>
-  	<url-pattern>/removeCarrello</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>LoginServlet</servlet-name>
-  	<url-pattern>/login</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>RegisterControl</servlet-name>
-  	<url-pattern>/register</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>LogoutControl</servlet-name>
-  	<url-pattern>/logout</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>UserOrderSearchControl</servlet-name>
-  	<url-pattern>/visualizzaOrdini</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>PlaceOrderControl</servlet-name>
-  	<url-pattern>/placeOrder</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>UserControl</servlet-name>
-  	<url-pattern>/userSettings</url-pattern>
-  </servlet-mapping>
+<display-name>Storage</display-name>
+<welcome-file-list>
+<welcome-file>ProductView.jsp</welcome-file>
+</welcome-file-list>
+<resource-ref>
+<description>JNDI reference to a data source</description>
+<res-ref-name>jdbc/storage</res-ref-name>
+<res-type>javax.sql.DataSource</res-type>
+<res-auth>Container</res-auth>
+</resource-ref>
+<servlet>
+<servlet-name>ProductCatalogueControl</servlet-name>
+<servlet-class>control.ProductCatalogueControl</servlet-class>
+</servlet>
+<servlet>
+<servlet-name>ProductViewControl</servlet-name>
+<servlet-class>control.ProductViewControl</servlet-class>
+</servlet>
+<servlet>
+<servlet-name>AddToCartControl</servlet-name>
+<servlet-class>control.AddToCartControl</servlet-class>
+</servlet>
+<servlet>
+<servlet-name>RemoveFromCartControl</servlet-name>
+<servlet-class>control.RemoveFromCartControl</servlet-class>
+</servlet>
+<servlet>
+<servlet-name>LoginServlet</servlet-name>
+<servlet-class>control.LoginServlet</servlet-class>
+</servlet>
+<servlet>
+<servlet-name>RegisterControl</servlet-name>
+<servlet-class>control.RegisterControl</servlet-class>
+</servlet>
+<servlet>
+<servlet-name>LogoutControl</servlet-name>
+<servlet-class>control.LogoutControl</servlet-class>
+</servlet>
+<servlet>
+<servlet-name>UserOrderSearchControl</servlet-name>
+<servlet-class>control.UserOrderSearchControl</servlet-class>
+</servlet>
+<servlet>
+<servlet-name>PlaceOrderControl</servlet-name>
+<servlet-class>control.PlaceOrderControl</servlet-class>
+</servlet>
+<servlet>
+<servlet-name>OrderViewControl</servlet-name>
+<servlet-class>control.OrderViewControl</servlet-class>
+</servlet>
+<servlet>
+<servlet-name>UserControl</servlet-name>
+<servlet-class>control.UserControl</servlet-class>
+</servlet>
+<servlet>
+<servlet-name>UpdateProductControl</servlet-name>
+<servlet-class>control.UpdateProductControl</servlet-class>
+</servlet>
+<servlet>
+<servlet-name>ModInCartControl</servlet-name>
+<servlet-class>control.ModInCartControl</servlet-class>
+</servlet>
+<servlet>
+<servlet-name>ViewOrdersControl</servlet-name>
+<servlet-class>control.ViewOrdersControl</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>OrderViewControl</servlet-name>
+<url-pattern>/order</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+<servlet-name>ProductCatalogueControl</servlet-name>
+<url-pattern>/catalogo</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+<servlet-name>UpdateProductControl</servlet-name>
+<url-pattern>/updateproduct</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+<servlet-name>ProductViewControl</servlet-name>
+<url-pattern>/prodotto</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+<servlet-name>AddToCartControl</servlet-name>
+<url-pattern>/addCarrello</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+<servlet-name>RemoveFromCartControl</servlet-name>
+<url-pattern>/removeCarrello</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+<servlet-name>LoginServlet</servlet-name>
+<url-pattern>/login</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+<servlet-name>RegisterControl</servlet-name>
+<url-pattern>/register</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+<servlet-name>LogoutControl</servlet-name>
+<url-pattern>/logout</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+<servlet-name>UserOrderSearchControl</servlet-name>
+<url-pattern>/visualizzaOrdini</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+<servlet-name>PlaceOrderControl</servlet-name>
+<url-pattern>/placeOrder</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+<servlet-name>UserControl</servlet-name>
+<url-pattern>/userSettings</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+<servlet-name>ModInCartControl</servlet-name>
+<url-pattern>/mod</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+<servlet-name>ViewOrdersControl</servlet-name>
+<url-pattern>/orders</url-pattern>
+</servlet-mapping>
 </web-app>

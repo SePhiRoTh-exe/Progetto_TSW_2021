@@ -7,12 +7,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import model.ProdottoBean;
 import datasource.ProdottoModelDS;
@@ -29,13 +29,20 @@ public class ProductCatalogueControl extends HttpServlet {
 		
 		try {
 		if(request.getParameter("catalog")!=null) {
-			
+			String tipo=request.getParameter("catalog");
 			ArrayList <ProdottoBean> prodotti = new ArrayList<ProdottoBean>(pds.doRetrieveAllProducts());
 			request.setAttribute("prodotti", prodotti);
-			
+			if(tipo.equals("2"))
+			{
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminPage.jsp");
+				dispatcher.forward(request, response);
+			}
+			else
+			{
 			
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Home.jsp");
 				dispatcher.forward(request, response);
+			}
 			
 			
 		}
@@ -43,16 +50,18 @@ public class ProductCatalogueControl extends HttpServlet {
 			 
 				//se la ricerca è avvenuta per categoria, allora vengono presi tutti i prodotti 
 				//di una data categoria dal database e mostrati nella pagina
+				String p=request.getParameter("by");
 				if(request.getParameter("by").equalsIgnoreCase("categoria")){
 					ArrayList<ProdottoBean> prodotti=(ArrayList<ProdottoBean>) pds.doRetrieveByCat(request.getParameter("q"));
 					request.setAttribute("prodotti", prodotti);
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Ricerca.jsp");
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Research.jsp");
 					dispatcher.forward(request, response);
 				}
 				else if(request.getParameter("by").equalsIgnoreCase("name")) {
-					ArrayList<ProdottoBean> prodotti=(ArrayList<ProdottoBean>) pds.doRetrieveByName(request.getParameter("q"));
+					ArrayList<ProdottoBean> prodotti=(ArrayList<ProdottoBean>) pds.doRetrieveByName(request.getParameter("name"));
+					System.out.println("prodotti caricati");
 					request.setAttribute("prodotti", prodotti);
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Ricerca.jsp");
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Research.jsp");
 					dispatcher.forward(request, response);
 					
 				}

@@ -11,7 +11,7 @@ function ricercaTesto(){
 	else if(window.ActiveXObject){
 		req=new ActiveXObject("Microsoft.XMLHttp");
 	}
-	var url="/catalogo?q="+ricerca;
+	var url="/catalogo?name="+ricerca;
 	req.open("get",url,true);
 	req.onreadystatechange=callback;
 	req.send(null);

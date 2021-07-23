@@ -13,47 +13,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-		<script src="./scripts/ValidateModifyProduct.js"></script>
+		<script src="./js/ValidateModifyProduct.js"></script>
         <link href='http://fonts.googleapis.com/css?family=Open%20Sans:400,700,600' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Josefin+Sans:400,600,700' rel='stylesheet' type='text/css'> 
+        <link href="stile.css" rel="stylesheet" type="text/css">
 <meta charset="ISO-8859-1">
 <title>VGHUB</title>
 </head>
 <body>
- <tbody>
+
+
+
+<%@ include file="../section/navbar.jsp" %><br>
+	        <div class="main-container">
+            <div class="content main-cat ombre rd">
+                <div class="pannello-centrale">
+                    <div id="prodotto-pannello-centrale">
+                        <div class="prodotto">
+                            <div class="blur">
+                                <img class="background">
+                                <div class="cover ombre">
+                                    <img class="picture" src="./img/<%=prodotto.getImg() %>-cover.jpg">
+                                </div>
+                            </div>
+                            
+                            <div class="info ombre">
+                            
+                            						<tbody>
 <tr>
     <td>
-<div class="section padding-inner">
-	    	<div class="container">
-				<div class="row">
-					<!-- Image Column -->
-					<div class="col-sm-6">
-						<div class="portfolio-item">
-							<div class="portfolio-image">
-								<a href="#"><img src="imgControl?id=<%=prodotto.getCodice()%>" alt="Project Name"></a>
-							</div>
-						</div>
-					</div>
-					<!-- End Image Column -->
-					
-                    <!-- Project Info Column -->
-					<div class="portfolio-item-description col-sm-6">
-						<h3><%=prodotto.getNome()%></h3>
-						<p>
-							<%=prodotto.getDescrizione() %>
-						</p>
-						
-						<ul class="list-group">
-							<li class="list-group-item"><b>Piattaforma:</b> <%=prodotto.getPiattaforma() %></li>
-							<li class="list-group-item"><b>Categoria:</b> <%=prodotto.getCategoria() %></li>	
-						</ul>
-						
-					
-                        	
-					</div>
-					<!-- End Project Info Column -->
-				</div>
-                <!-- End Row -->
+
                 </td>
                 <br><br><br>
                 <center>
@@ -73,7 +62,7 @@
                 <div class="form-group col-md-5">
                 <label for="inputZip">Quantità</label>
                 <input type="number" class="form-control" id="inputQuant" name="quantita" value="<%= prodotto.getQuantita() %>">
-                <span id="spanquant" style="display:none; font-family: 'Josefin Sans', sans-serif;"><i class="fa fa-info-circle" aria-hidden="true"></i> Minimo 1, massimo 99 cifre(non sotto lo zero). Dopo la ,/. solo due cifre.</span>
+                <span id="spanquant" style="display:none; font-family: 'Josefin Sans', sans-serif; border-style: none;"><i class="fa fa-info-circle" aria-hidden="true"></i> Minimo 1, massimo 99 cifre(non sotto lo zero). Dopo la ,/. solo due cifre.</span>
                 </div>
                 <div class="form-group col-md-5">
                 <label for="inputZip">Tipo</label>
@@ -109,9 +98,20 @@
                 </center>
                 </tr>
                 </tbody>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+       <%@ include file="../section/footer.jsp" %>
+ 
                  <script src="js/JQuery1-11-0.js"></script>
                 
              
               
 </body>
+
+
 </html>

@@ -2,10 +2,12 @@ package control;
 
 import java.io.IOException;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 
 public class LogoutControl extends HttpServlet {
@@ -17,9 +19,9 @@ public class LogoutControl extends HttpServlet {
 		
 		try { 
 			//se l'utente non è loggato, allora non può svolgere operazione di logout
-			if(session.getAttribute("utente")==null&&session.getAttribute("manager")==null) {
+			if(session.getAttribute("utente")==null && session.getAttribute("manager")==null) {
 				session.setAttribute("alertMsg", "Errore, utente non loggato");
-				response.sendRedirect("./HomePage.jsp");
+				response.sendRedirect("./Home.jsp");
 			}else {
 				//la sessione viene svuotata dalle informazioni di utente o manager e quindi il logout avviene
 				//con successo

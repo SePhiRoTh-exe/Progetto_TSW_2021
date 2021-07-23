@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%
-	Carrello carrello=(Carrello) request.getSession().getAttribute("cart");
-%>
 <!DOCTYPE html>
 <html>
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*,model.ProdottoBean,model.Carrello,model.*"%>
@@ -13,30 +10,52 @@
 	</head>
 <body>
 <%@ include file="../section/navbar.jsp" %>
-<% if(carrello!=null && !carrello.isEmpty()) { %>
-		<h1>Carrello</h1>
-		<table>
-			<tr>
-				<th>Nome</th>
-				<th>Quantita</th>
-				<th>Prezzo</th>
-				<th></th>
-			</tr>
-			<%List<ProdottoCarrello> prodottiCarrello=carrello.getProdotti();
-			  	for(ProdottoCarrello bean: prodottiCarrello){
-			%>
-			<tr>
-				<td><%=bean.getProduct().getNome()%></td>
-				<td><%=bean.getQuantità() %></td>
-				<td>$<%=bean.getProduct().getPrezzo() %></td>
-				<td><a href="removeCarrello?idProd=<%=bean.getProduct().getCodice()%>">Rimuovi dal carrello</a></td>
-			</tr>
-			<%} %>
-		</table>
-		<a href="placeOrder">Procedi all ordine</a>
-<% } else {%>
-	<h1>IL TUO CARRELLO E' VUOTO</h1><br>
-	<h3><a href="Home.jsp">Acquista Nuovi Giochi</a></h3>
-<%} %>
+<%
+		if(session.getAttribute("cart")==null) session.setAttribute("cart", new Carrello());
+		Carrello cart=(Carrello)session.getAttribute("cart");
+		ArrayList<ProdottoCarrello> lista=cart.getProdotti();
+
+ 	if(session.getAttribute("alertMsg")!=null){%>
+		<h3><font color="red"><%=session.getAttribute("alertMsg")%></font></h3> 
+		<%session.setAttribute("alertMsg","");
+		session.setAttribute("redirect","CartView.jsp");%>
+	<%} %><br><p class="block" style="font-size:40px">Il tuo carrello:</p><br>
+	<% if(cart.getProdotti().size()==0){%>
+	<h2>Vuoto, aggiungi qualcosa!</h2>
+	<%
+	}else{%> 
+	
+	
+	<table class="table table-hover">
+  		<thead>
+    	<tr>
+      <th scope="col">Foto</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Quantità</th>
+      <th scope="col">Prezzo</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <%  for(int i=0;i<lista.size();i++){ 
+  	ProdottoCarrello prodotto=lista.get(i); %>
+ 		<tr>
+				<td><img class="picture" src="./img/<%=prodotto.getProduct().getImg() %>-cover.jpg"></td>
+				<td><%=lista.get(i).getProduct().getNome() %><td align="center"><%=lista.get(i).getQuantità()%><td align="center"><%=lista.get(i).getProduct().getPrezzo() %>
+				<td><a href="mod?change=1&idProd=<%=lista.get(i).getProduct().getCodice()%>"><button class="button">Aggiungi</button></a>
+				<td><a href="mod?change=-1&idProd=<%=lista.get(i).getProduct().getCodice()%>"><button class="button">Rimuovi</button></a>
+			</tr><%
+		} %> 
+			</table>
+		<hr>
+		
+		<p align="right"> <%=cart.getTotale()%></p>
+	  	<form action="placeOrder" method="post" name="placeorder">
+		<input type="submit" value="Checkout"><br><br><br><br>
+		</form>	
+		</tbody>
+		<%} %>
+		
+
 </body>
 </html>

@@ -67,8 +67,10 @@ public class UserModelDS {
 	public static synchronized UserBean doRetrieve(String email) throws SQLException {
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
+		System.out.println(email);
 		String UserSelectSQL="SELECT * FROM "+TABLE_NAME+" WHERE EMAIL ='"+email+"'";
 		UserBean bean=new UserBean();
+		
 		try {
 			connection=ds.getConnection();
 			preparedStatement=connection.prepareStatement(UserSelectSQL);
@@ -83,6 +85,7 @@ public class UserModelDS {
 				bean.setEmail(email);
 				bean.setValid(true);
 				bean.setAdmin(rs.getBoolean("Admin"));
+				System.out.println(bean.getCognome());
 			}
 		}
 		finally
@@ -95,6 +98,7 @@ public class UserModelDS {
 					connection.close();
 			}
 		}
+		System.out.println("return");
 		return bean;
 	}
 	

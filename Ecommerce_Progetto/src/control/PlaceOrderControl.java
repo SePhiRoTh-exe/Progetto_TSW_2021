@@ -5,19 +5,23 @@ import java.io.IOException;
 
 import java.sql.SQLException;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import datasource.OrdineModelDS;
+import datasource.ProdottoModelDS;
 import model.UserBean;
 import model.Carrello;
+import model.ProdottoBean;
 
 public class PlaceOrderControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserBean utente;
+	ProdottoModelDS pro= new ProdottoModelDS();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
@@ -37,6 +41,13 @@ public class PlaceOrderControl extends HttpServlet {
 					else {	
 						if(OrdineModelDS.doSave(cart, utente)) {
 							System.out.println("ORDINE SALVATO");
+							for(int i=0;cart.getProdotti().size()>i;i++) {
+								int comprato=cart.getProdotti().get(i).getQuantità();
+								ProdottoBean pr=cart.getProdotti().get(i).getProduct();
+								System.out.println(pr.getQuantita());
+								pr.setQuantita(pr.getQuantita()-comprato);
+								pro.doSave(pr);
+							}
 							session.setAttribute("cart", null);
 							session.setAttribute("alertMsg", "Ordine effettuato con successo");
 							response.sendRedirect("./Home.jsp");
