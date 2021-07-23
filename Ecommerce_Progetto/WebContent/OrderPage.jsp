@@ -11,8 +11,8 @@
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-		<link href="style.css" rel="stylesheet" type="text/css">
-		<title>Ecommerce</title>
+		<link href="stile.css" rel="stylesheet" type="text/css">
+		<title>VGHUB</title>
 	</head>
 <body>
 	<%@ include file="../section/navbar.jsp" %>

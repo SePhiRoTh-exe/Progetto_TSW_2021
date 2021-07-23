@@ -14,12 +14,6 @@
         <link rel="stylesheet" href="stile.css">
     </head>
     <body>
-    <%if(session.getAttribute("alertMsg")!=null){%>
-<h3><font color="red"><%=session.getAttribute("alertMsg")%></font></h3>
-<%session.setAttribute("alertMsg","");
-session.setAttribute("redirect",null);
-%>
-<%}%>
         <script>
             function changeCss () {
             var bodyElement = document.querySelector("body");
